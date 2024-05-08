@@ -11,8 +11,8 @@ namespace BallApp {
         public TennisBall(double xp, double yp)
             : base(xp, yp, @"Picture\tennis_ball.png"){
 
-            MoveX = 50;//移動量設定
-            MoveY = 50;
+            MoveX = 35;//移動量設定
+            MoveY = 35;
         }
 
         public override bool Move() {
