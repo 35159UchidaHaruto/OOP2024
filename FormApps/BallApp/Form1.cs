@@ -1,7 +1,7 @@
 namespace BallApp {
     public partial class Form1 : Form {
 
-      
+        
 
         //リストコレクション
         private List<Obj> balls = new List<Obj>();   //ボールインスタンス格納用
@@ -21,14 +21,15 @@ namespace BallApp {
 
             for (int i = 0; i < balls.Count; i++) {
                 balls[i].Move();
-                pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
-            }        
+                pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);              
+            }                        
         }
+        
 
         private void Form1_MouseClick(object sender, MouseEventArgs e) {
 
             PictureBox pb = new PictureBox(); //画像を表示するコントロール
-            Obj ball = null;
+            Obj ball = null;           
             
             if (e.Button == MouseButtons.Left) { 
                 ball = new SoccerBall(e.X-15, e.Y-15);
@@ -41,10 +42,11 @@ namespace BallApp {
             pb.Location = new Point((int)ball.PosX, (int)ball.PosY);
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.Parent = this;
-            timer1.Start();
+            timer1.Start();         
 
             balls.Add(ball);
             pbs.Add(pb);
+            this.Text = "BallApp SoccerBall:" + SoccerBall.Count + "TennisBall:" + TennisBall.Count;
 
         }
     }

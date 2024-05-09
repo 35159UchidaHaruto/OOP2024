@@ -14,10 +14,11 @@ namespace BallApp {
 
         //コンストラクタ
         public Obj(double　posX, double posY,string path) {
-
+            
             PosX = posX;
             PosY = posY;
             Image = Image.FromFile(path);
+           
         }
 
 
