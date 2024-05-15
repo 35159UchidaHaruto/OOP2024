@@ -36,17 +36,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            IEnumerable<int> query = numbers.Where(s => s >= 50);
-            Console.WriteLine(query.Count());           
+           numbers.Where(n => n >= 50).ToList().ForEach(n => Console.WriteLine(n));
+                       
 
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            var nums = numbers.Select(n =>n * 2);
-            foreach(var n in nums) { 
-                Console.WriteLine(nums.Count());
-            }
-
+            numbers.Select(n => n * 2).ToList().ForEach(n => Console.WriteLine(n));                        
         }
     }
 }
