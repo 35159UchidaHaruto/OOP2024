@@ -22,14 +22,14 @@ namespace BallApp {
 
         public override bool Move(Keys direction) {
             if (direction == Keys.Right) {
-                PosX = MoveX;
-                if (PosX < 635) {
+                PosX -= MoveX;
+                if (PosX > 720) {
                     MoveX = -MoveX;
                 }
             } else if (direction == Keys.Left) {
                 PosX -= MoveX;
                 if (PosX < 0) {
-                    MoveY = -MoveX;
+                    MoveX = -MoveX;
                 }
             }
             return true;
