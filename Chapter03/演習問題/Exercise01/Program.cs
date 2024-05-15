@@ -36,10 +36,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            IEnumerable<int> query = numbers.Where(n => n >= 50);
-            foreach (int num in query) {
-                Console.WriteLine(num);
-            }            
+            IEnumerable<int> query = numbers.Where(s => s >= 50);
+            Console.WriteLine(query.Count());           
 
         }
 
