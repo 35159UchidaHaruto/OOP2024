@@ -44,7 +44,7 @@ namespace Exercise01 {
         private static void Exercise1_4(List<int> numbers) {
             var nums = numbers.Select(n =>n * 2);
             foreach(var n in nums) { 
-                Console.WriteLine(n);
+                Console.WriteLine(nums.Count());
             }
 
         }
