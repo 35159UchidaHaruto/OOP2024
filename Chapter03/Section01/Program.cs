@@ -18,9 +18,17 @@ namespace Section01 {
                     "Canberra", "Hong Kong"
             };
 
-            IEnumerable<String> query = names.Where(s => s.Contains(" ")).Select(s => s.ToUpper());
-            foreach (string s in query)
-                Console.WriteLine(s);
+            var query = names.Where(s => s.Length <= 5).ToArray();
+            foreach (var item in query) {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("--------------");
+
+            names[0] = "Osaka";
+            foreach (var item in query) {
+                Console.WriteLine(item);
+            }
         }
         
     }
@@ -44,7 +52,10 @@ var lowerList = list.ConvertAll(s => s.ToLower());
              lowerList.ForEach(s => Console.WriteLine(s));
 
             var upperList = list.ConvertAll(s => s.ToUpper());
-             upperList.ForEach(s => Console.WriteLine(s));*/
+             upperList.ForEach(s => Console.WriteLine(s));
+IEnumerable<String> query = names.Where(s => s.Contains(" ")).Select(s => s.ToUpper());
+            foreach (string s in query)
+                Console.WriteLine(s);*/
 
 /*udgement judge = IsEven;
             //Judgement judge = IsNotEven;
