@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Exercise01 {
     internal class Program {
@@ -28,11 +29,10 @@ namespace Exercise01 {
         private static void Exercise1_1(List<int> numbers) {
             var exists = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
             Console.WriteLine(exists);
-
         }
 
         private static void Exercise1_2(List<int> numbers) {
-            
+            numbers.ForEach(s => Console.WriteLine(s/2.0));                    
         }
 
         private static void Exercise1_3(List<int> numbers) {
