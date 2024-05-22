@@ -11,7 +11,7 @@ namespace Exercise02 {
      "Tokyo", "New Delhi", "Bangkok", "London",
                 "Paris", "Berlin", "Canberra", "Hong Kong",
 };
-            Exercise2_1(names);
+            //Exercise2_1(names);
             Console.WriteLine("-----");
 
             Exercise2_2(names);
@@ -28,23 +28,28 @@ namespace Exercise02 {
             do {
                 //入力処理
                 var line = Console.ReadLine();
-                
                 if (String.IsNullOrEmpty(line)) {
                     Console.WriteLine(-1);
                     break; //改行だったら抜ける
                 } else {
-                    var index = names.FindIndex(x => x == line);
-                    Console.WriteLine(index); 
-                }                
-            }while (true);
-            
+                    var index = names.FindIndex(s => s == line);
+                    Console.WriteLine(index);
+                }
+            } while (true);
+
         }
 
         private static void Exercise2_2(List<string> names) {
 
+            var count = names.Count(s => s.Contains("o"));
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<string> names) {
+            var array = names.Where(s => s.Contains("o")).ToArray();
+            foreach( var item in array) {
+                Console.WriteLine(item);
+            }                
         }
 
         private static void Exercise2_4(List<string> names) {
