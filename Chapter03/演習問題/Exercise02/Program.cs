@@ -53,7 +53,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
-            var selected = names.Where(s => s.Contains("B")).Select(s => s.Length).ToArray();
+            var selected = names.Where(s => s.StartsWith("B")).Select(s => s.Length).ToArray();
             foreach( var item in selected) {
                 Console.WriteLine(item);
             }          
