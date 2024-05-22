@@ -47,15 +47,15 @@ namespace Exercise02 {
 
         private static void Exercise2_3(List<string> names) {
             var array = names.Where(s => s.Contains("o")).ToArray();
-            foreach( var item in array) {
-                Console.WriteLine(item);
+            foreach( var name in array) {
+                Console.WriteLine(name);
             }                
         }
 
         private static void Exercise2_4(List<string> names) {
-            var selected = names.Where(s => s.StartsWith("B")).Select(s => s.Length).ToArray();
-            foreach( var name in selected) {
-                Console.WriteLine(name);
+            var selected = names.Where(s => s.StartsWith("B")).Select(s => new { s.Length, s });
+            foreach( var obj in selected) {
+                Console.WriteLine(obj.s + "," + obj.Length);
             }          
         }
     }
