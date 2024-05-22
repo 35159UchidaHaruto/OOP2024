@@ -21,7 +21,7 @@ namespace BallApp {
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
 
-            bar = new Bar(340,500);
+            bar = new Bar(340, 500);
             pbBar = new PictureBox();
 
             pbBar.Image = bar.Image;
@@ -34,7 +34,11 @@ namespace BallApp {
         private void timer1_Tick(object sender, EventArgs e) {
 
             for (int i = 0; i < balls.Count; i++) {
-                balls[i].Move(pbBar, pbs[i]);
+                if (!balls[i].Move(pbBar, pbs[i])) {
+                    //落下したボールインスタンスを削除する
+                    balls[i].Move(pbBar, pbs[i]);
+                }
+
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
             }
         }
@@ -56,7 +60,7 @@ namespace BallApp {
             pb.Location = new Point((int)ball.PosX, (int)ball.PosY);
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.Parent = this;
-            timer1.Start();            
+            timer1.Start();
 
             balls.Add(ball);
             pbs.Add(pb);
@@ -65,8 +69,12 @@ namespace BallApp {
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
-           bar.Move(e.KeyCode);
+            bar.Move(e.KeyCode);
             pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e) {
+
         }
     }
 }

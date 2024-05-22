@@ -28,14 +28,21 @@ namespace BallApp {
             PosY += MoveY;
 
             if(PosX > 750 || PosX < 0) {
+                //移動量の符号を反転
                 MoveX = -MoveX;
             }
 
-            if(PosY > 500 || PosY < 0 || rBar.IntersectsWith(rBall)) {
+            if(PosY < 0 ) {
+                //移動量の符号を反転
                 MoveY = -MoveY;
             }
+            
+            //下に落下したか？
+            if(PosY > 500) {
+                return false;
+            }
 
-            return true;
+                return true;
         }
 
         public override bool Move(Keys direction) {
