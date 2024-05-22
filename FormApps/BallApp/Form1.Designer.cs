@@ -25,28 +25,32 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             timer1 = new System.Windows.Forms.Timer(components);
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            label1 = new Label();
+            Score = new Label();
             SuspendLayout();
             // 
             // timer1
             // 
             timer1.Tick += timer1_Tick;
             // 
-            // textBox1
+            // label1
             // 
-            textBox1.Location = new Point(0, 0);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 0;
+            label1.AutoSize = true;
+            label1.Location = new Point(513, 43);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
             // 
-            // textBox2
+            // Score
             // 
-            textBox2.Location = new Point(166, 82);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(107, 23);
-            textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
+            Score.AutoSize = true;
+            Score.Location = new Point(644, 43);
+            Score.Name = "Score";
+            Score.Size = new Size(38, 15);
+            Score.TabIndex = 1;
+            Score.Text = "label2";
+            Score.Click += Score_Click;
             // 
             // Form1
             // 
@@ -54,8 +58,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Green;
             ClientSize = new Size(784, 561);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(Score);
+            Controls.Add(label1);
             Name = "Form1";
             Text = "BallApp";
             Load += Form1_Load;
@@ -67,7 +71,7 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Label label1;
+        private Label Score;
     }
 }

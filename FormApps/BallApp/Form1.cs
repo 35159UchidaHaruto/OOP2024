@@ -20,6 +20,7 @@ namespace BallApp {
 
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
+            this.Text = "BallApp Soccerball :0 Tennisball : 0";
 
             bar = new Bar(340, 500);
             pbBar = new PictureBox();
@@ -73,7 +74,7 @@ namespace BallApp {
             pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e) {
+        private void Score_Click(object sender, EventArgs e) {
 
         }
     }
