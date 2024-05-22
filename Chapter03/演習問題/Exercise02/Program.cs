@@ -11,7 +11,7 @@ namespace Exercise02 {
      "Tokyo", "New Delhi", "Bangkok", "London",
                 "Paris", "Berlin", "Canberra", "Hong Kong",
 };
-            //Exercise2_1(names);
+            Exercise2_1(names);
             Console.WriteLine("-----");
 
             Exercise2_2(names);
@@ -53,6 +53,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
+            var selected = names.Where(s => s.Contains("B")).Select(s => s.Length).ToArray();
+            foreach( var item in selected) {
+                Console.WriteLine(item);
+            }          
         }
     }
 }
