@@ -54,8 +54,8 @@ namespace Exercise02 {
 
         private static void Exercise2_4(List<string> names) {
             var selected = names.Where(s => s.StartsWith("B")).Select(s => s.Length).ToArray();
-            foreach( var item in selected) {
-                Console.WriteLine(item);
+            foreach( var name in selected) {
+                Console.WriteLine(name);
             }          
         }
     }
