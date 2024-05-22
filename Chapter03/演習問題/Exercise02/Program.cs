@@ -12,21 +12,36 @@ namespace Exercise02 {
                 "Paris", "Berlin", "Canberra", "Hong Kong",
 };
             Exercise2_1(names);
-            Console.WriteLine();
+            Console.WriteLine("-----");
 
             Exercise2_2(names);
-            Console.WriteLine();
+            Console.WriteLine("-----");
 
             Exercise2_3(names);
-            Console.WriteLine();
+            Console.WriteLine("-----");
             Exercise2_4(names);
-            Console.WriteLine();
+            Console.WriteLine("-----");
         }
 
         private static void Exercise2_1(List<string> names) {
+            Console.WriteLine("都市名を入力。空行で終了");
+            do {
+                //入力処理
+                var line = Console.ReadLine();
+                
+                if (String.IsNullOrEmpty(line)) {
+                    Console.WriteLine(-1);
+                    break; //改行だったら抜ける
+                } else {
+                    var index = names.FindIndex(x => x == line);
+                    Console.WriteLine(index); 
+                }                
+            }while (true);
+            
         }
 
         private static void Exercise2_2(List<string> names) {
+
         }
 
         private static void Exercise2_3(List<string> names) {
