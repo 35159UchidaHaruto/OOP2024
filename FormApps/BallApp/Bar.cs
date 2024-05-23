@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.Devices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,23 +12,20 @@ namespace BallApp {
 
             MoveX = 10;
             MoveY = 0;
-
         }
 
-        public override bool Move(PictureBox pbBar, PictureBox pbBall) {
-            return true;
+        public override int Move(PictureBox pbBar, PictureBox pbBall) {
+            return 0;
         }
 
         public override bool Move(Keys direction) {
             if (direction == Keys.Right) {
-                PosX -= MoveX;
-                if (PosX > 750) {
-                    MoveX = -MoveX;
+                if (PosX < 635) {
+                    PosX += MoveX;
                 }
             } else if (direction == Keys.Left) {
-                PosY -= MoveX;
-                if (PosX < 0) {
-                    MoveX = +MoveX;
+                if (PosX > 0) {
+                    PosX -= MoveX;
                 }
             }
             return true;

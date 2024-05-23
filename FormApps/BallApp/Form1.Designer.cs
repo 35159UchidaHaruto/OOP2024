@@ -1,5 +1,5 @@
 ﻿namespace BallApp {
-    public partial class  Form1{
+    partial class Form1 {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -25,32 +25,23 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             timer1 = new System.Windows.Forms.Timer(components);
-            label1 = new Label();
-            Score = new Label();
+            score = new Label();
             SuspendLayout();
             // 
             // timer1
             // 
+            timer1.Interval = 10;
             timer1.Tick += timer1_Tick;
             // 
-            // label1
+            // score
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(513, 43);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
-            // 
-            // Score
-            // 
-            Score.AutoSize = true;
-            Score.Location = new Point(644, 43);
-            Score.Name = "Score";
-            Score.Size = new Size(38, 15);
-            Score.TabIndex = 1;
-            Score.Text = "label2";
-            Score.Click += Score_Click;
+            score.AutoSize = true;
+            score.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            score.Location = new Point(528, 9);
+            score.Name = "score";
+            score.Size = new Size(105, 32);
+            score.TabIndex = 0;
+            score.Text = "スコア：0";
             // 
             // Form1
             // 
@@ -58,8 +49,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Green;
             ClientSize = new Size(784, 561);
-            Controls.Add(Score);
-            Controls.Add(label1);
+            Controls.Add(score);
             Name = "Form1";
             Text = "BallApp";
             Load += Form1_Load;
@@ -71,7 +61,6 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private Label label1;
-        private Label Score;
+        private Label score;
     }
 }
