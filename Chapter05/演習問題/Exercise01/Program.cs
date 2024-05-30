@@ -8,12 +8,12 @@ namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
             Console.Write("文字を入力してください。：");
-            var s = Console.ReadLine();
+            var s1 = Console.ReadLine();
             Console.WriteLine();
             Console.Write("文字を入力してください。：");
-            var s2 = Console.ReadLine();        
+            var s2 = Console.ReadLine();
 
-            if(String.Compare(s, s2, true) == 0){
+            if (String.Compare(s1, s2, ignoreCase:true) == 0){
                 Console.WriteLine("等しいです。");
             } else {
                 Console.WriteLine("等しくないです。");

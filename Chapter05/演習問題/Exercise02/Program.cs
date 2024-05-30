@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     internal class Program {
         static void Main(string[] args) {
-            var s = (int)Console.ReadLine();
+            var line = Console.ReadLine();
+            int num;
+            if(int.TryParse(line, out num)){
+                Console.WriteLine("${num:#,#}");
+                //Console.WriteLine("{0:#,#}", num);
+            } else {
+                Console.WriteLine("数字文字列ではありません");
+            }
             
         }
     }
