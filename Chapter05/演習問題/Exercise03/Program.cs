@@ -27,7 +27,11 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
-        }
+
+            Console.WriteLine("-----");
+            Exercise3_6(text);
+
+        }        
 
         private static void Exercise3_1(string text) {
             int count = 0;
@@ -43,7 +47,6 @@ namespace Exercise03 {
 
             var c = text.Replace("big", "small");
             Console.WriteLine(c);
-
         }
 
         private static void Exercise3_3(string text) {
@@ -55,8 +58,7 @@ namespace Exercise03 {
             var words = text.Split().Where(s => s.Length <= 4);
             foreach(var word in words) {
                 Console.WriteLine(word);
-            }
-            
+            }            
         }
 
         private static void Exercise3_5(string text) {
@@ -66,7 +68,12 @@ namespace Exercise03 {
             foreach(var word in words) {
                sb.Append(word).Append(' ');
             }            
-            Console.Write(sb.ToString());
+            Console.Write(sb);
+        }
+
+        private static void Exercise3_6(string text) {
+            var words = text.Split(new[] { ' ', ' ', ' ', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine(words);
         }
     }
 }
