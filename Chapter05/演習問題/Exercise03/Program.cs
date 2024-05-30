@@ -27,9 +27,11 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
+            Console.WriteLine("-----");
 
             Console.WriteLine("-----");
             Exercise3_6(text);
+            
 
         }        
 
@@ -63,17 +65,20 @@ namespace Exercise03 {
 
         private static void Exercise3_5(string text) {
             var words = text.Split(' ').ToArray();
-            var sb = new StringBuilder();
-
-            foreach(var word in words) {
-               sb.Append(word).Append(' ');
-            }            
-            Console.Write(sb);
+            if (words.Length > 0) {
+                var sb = new StringBuilder(words[0]);
+                foreach (var word in words.Skip(1)) {
+                    sb.Append(word).Append(' ');
+                }
+                Console.Write(sb);
+            }
         }
 
         private static void Exercise3_6(string text) {
-            var words = text.Split(new[] { ' ', ' ', ' ', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            Console.WriteLine(words);
+            var words = text.Split((new[] { ',', ' ', '-', '_' }).ToArray());
+            foreach (var word in words) {
+                Console.WriteLine(word);
+            }            
         }
     }
 }
