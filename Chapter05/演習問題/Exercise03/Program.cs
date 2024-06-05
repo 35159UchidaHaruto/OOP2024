@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
-            var text = "Jackdaws love my big sphinx of quartz";
-            var text2 = "Jackdaws, love my, big sphinx-of_quartz";
+            var text = "Jackdaws love my big sphinx of quartz";            
 
 
             Exercise3_1(text);
@@ -77,7 +76,7 @@ namespace Exercise03 {
         private static void Exercise3_6(string text) {
             var words = text.Split((new[] { ',', ' ', '-', '_' }).ToArray());
             foreach (var word in words) {
-                Console.WriteLine(word);
+                Console.Write(word);
             }            
         }
     }
