@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace Section01 {
     internal class Program {
+        static private Dictionary<string, string> prefOfficeDict = new Dictionary<string, string>();        
         static void Main(string[] args) {
-
-            var prefOfficeDict = new Dictionary<string, string>();
+            String pref, prefCaptalLocation;
             //入力処理
             Console.WriteLine("県庁所在地の登録");
-            for (int i = 0; i < 5; i++) {
+            while (true) {
                 //都道府県の入力
                 Console.Write("都道府県：");
-                String pref = Console.ReadLine();
+                pref = Console.ReadLine();
+
+                if(pref == null) {
+                    break;
+                }
 
                 //県庁所在地の入力
                 Console.Write("県庁所在地：");
-                String prefCaptalLocation = Console.ReadLine();               
+                prefCaptalLocation = Console.ReadLine();               
 
                 //既に都道府県が登録されているか？
                 if (prefOfficeDict.ContainsKey(pref)) {
@@ -35,14 +39,16 @@ namespace Section01 {
             Boolean endFlag = false; //終了フラグ(無限ループを抜け出す用）
             while (!endFlag) {               
                 switch (menuDisp()) {
+                    //一覧出力処理
                     case "1":
-                        listDisplay(prefOfficeDict);
+                        listDisplay();
                         break;
 
+                    //検索処理
                     case "2":
-                        serach(prefOfficeDict);
+                        serach();
                         break;
-
+                    
                     case "9":
                         endFlag = true; //終了フラグＯＮ
                         break;
@@ -55,15 +61,15 @@ namespace Section01 {
 
         }
 
-        private static void serach(Dictionary<string, string> prefOfficeDict) {
+        private static void serach() {
             //都道府県の入力
             Console.WriteLine("都道府県:");
             String searchPref = Console.ReadLine();
             Console.WriteLine(searchPref + "の都道府県は" + prefOfficeDict[searchPref] + "です");
         }
 
-        private static void listDisplay(Dictionary<string, string> prefOfficeDict) {
-            //一覧出力表示
+        //一覧表示処理
+        private static void listDisplay() {            
             foreach (var item in prefOfficeDict) {
                 Console.WriteLine("{0}の県庁所在地は{1}です", item.Key, item.Value);
             }
