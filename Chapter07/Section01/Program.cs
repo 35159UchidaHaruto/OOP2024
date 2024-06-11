@@ -8,34 +8,80 @@ namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
 
-           var kenchou = new Dictionary<string, string>();
-
+            var prefOfficeDict = new Dictionary<string, string>();
+            //入力処理
             Console.WriteLine("県庁所在地の登録");
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 5; i++) {
+                //都道府県の入力
                 Console.Write("都道府県：");
-                var key = Console.ReadLine();
-                Console.Write("県庁所在地：");
-                var value = Console.ReadLine();
+                String pref = Console.ReadLine();
 
-                if (key == kenchou[key]) {
-                    Console.WriteLine("この都道府県は、既に登録されています。");
-                    Console.WriteLine("上書きしますか？ y/n");
-                    var c = Console.ReadLine();
-                    if (c == "y"){
-                        kenchou[key] = key;
+                //県庁所在地の入力
+                Console.Write("県庁所在地：");
+                String prefCaptalLocation = Console.ReadLine();               
+
+                //既に都道府県が登録されているか？
+                if (prefOfficeDict.ContainsKey(pref)) {
+                    //登録済み
+                    Console.WriteLine("上書きしますか？(Y/N)");
+                    if (Console.ReadLine() == "N") {
+                        continue;
                     }
-                } else {
-                    kenchou.Add(key, value);
                 }
+                prefOfficeDict[pref] = prefCaptalLocation;
+            }
+            Console.WriteLine();
+
+            Boolean endFlag = false; //終了フラグ(無限ループを抜け出す用）
+            while (!endFlag) {               
+                switch (menuDisp()) {
+                    case "1":
+                        listDisplay(prefOfficeDict);
+                        break;
+
+                    case "2":
+                        serach(prefOfficeDict);
+                        break;
+
+                    case "9":
+                        endFlag = true; //終了フラグＯＮ
+                        break;
+                }
+                if (endFlag) {
+                    break;
+                }
+
             }
 
-            foreach(var ken in kenchou) {
-                Console.WriteLine(ken.Key + "の県庁所在地は" + ken.Value + "です。");
-            }                
+        }
+
+        private static void serach(Dictionary<string, string> prefOfficeDict) {
+            //都道府県の入力
+            Console.WriteLine("都道府県:");
+            String searchPref = Console.ReadLine();
+            Console.WriteLine(searchPref + "の都道府県は" + prefOfficeDict[searchPref] + "です");
+        }
+
+        private static void listDisplay(Dictionary<string, string> prefOfficeDict) {
+            //一覧出力表示
+            foreach (var item in prefOfficeDict) {
+                Console.WriteLine("{0}の県庁所在地は{1}です", item.Key, item.Value);
+            }
+        }
+
+
+        //menu表示
+        private static string menuDisp() {
+            Console.WriteLine("**** メニュー ****");
+            Console.WriteLine("1.一覧表示:");
+            Console.WriteLine("2.検索");
+            Console.WriteLine("9.終了");
+            Console.Write(">");
+            String menuSelect = Console.ReadLine();
+            return menuSelect;
         }
     }
 }
-
 
 /*var employeeDict = new Dictionary<int, Employee> {
                { 100, new Employee(100, "清水遼久") },
