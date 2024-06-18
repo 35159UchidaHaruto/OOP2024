@@ -13,7 +13,11 @@ namespace Test01 {
 
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
-
+            List<Student> students = new List<Student>();
+            string[] lines = File.ReadAllLines(filePath);
+            foreach(string line in lines) {
+                String[] 
+            }
 
 
 
