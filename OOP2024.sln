@@ -73,7 +73,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section01", "Chapter07\Sect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesCounter", "..\35159UchidaHaruto\OOP2024\Chapter02\SalesCounter\SalesCounter.csproj", "{449B1701-B4D2-4912-BE59-838A4C319936}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SalesCounter", "SalesCounter", "{B3B3D838-B40A-4458-9CD4-C74262902D3A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "売上集計プログラム", "売上集計プログラム", "{B3B3D838-B40A-4458-9CD4-C74262902D3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section02", "Chapter07\Section02\Section02.csproj", "{0ED8884C-1D69-4433-988A-B01418E499E2}"
 EndProject

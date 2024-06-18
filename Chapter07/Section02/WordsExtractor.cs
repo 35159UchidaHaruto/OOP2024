@@ -11,7 +11,7 @@ namespace Section02 {
         // ファイル以外からも抽出できるようにstring[]を引数に取る。
         public WordsExtractor(string[] lines) {
             _lines = lines;
-        }
+        }        
 
         // 10文字以上の単語を重複なくアルファベット順に列挙する。
         public IEnumerable<string> Extract() {
@@ -29,6 +29,8 @@ namespace Section02 {
         // 単語に分割する際のセパレータ
         // 文字配列を初期化をするよりも、ToCharArrayメソッドの方が簡単。
         private char[] _separators = @" !?"",.".ToCharArray();
+
+        public IEnumerable<string> Lines { get; }
 
         // １行から単語を取り出し列挙する
         private IEnumerable<string> GetWords(string line) {
