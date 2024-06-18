@@ -104,7 +104,7 @@ namespace Test02 {
         //　　　　出力結果【30.2才】
         private static void Exercise05(List<Person> persons) {
            var avg = persons.Average(p => p.Age);
-            Console.WriteLine($"{avg}" + "才");
+            Console.WriteLine($"{avg}" );
 
         }
 
@@ -112,7 +112,7 @@ namespace Test02 {
         //　　　　出力結果【72.25kg】
         private static void Exercise06(List<Person> persons) {
             var person = persons.Where(p => p.Height >= 170).Average(p => p.Weight);
-            Console.WriteLine(person + "kg");
+            Console.WriteLine(person);
 
         }
 
@@ -120,11 +120,11 @@ namespace Test02 {
         //　　　　出力結果【山田隆司 68kg
         //　　　　　　　　　沖田宏一 59kg
         //　　　　　　　　　片山伸介 65kg】
-        private static void Exercise07(List<Person> persons) {
+       　private static void Exercise07(List<Person> persons) {
             IEnumerable<Person> qeary = persons.Where(p => p.Weight <= 70);
             foreach(var qe in qeary) {
                 Console.WriteLine(qe);
-            }                
+            }               
         }
 
         //問題８　名前に「山」の漢字が含まれている人全て表示
