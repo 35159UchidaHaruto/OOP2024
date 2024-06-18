@@ -13,5 +13,20 @@ namespace Section02 {
             this.Month = month;
             this.Day = day;
         }
+        //Monthどうしの比較をする
+        public override bool Equals(object obj) {
+            var other = obj as MonthDay;
+            if(other == null) {
+                throw new ArgumentException();
+            }
+            return this.Month == other.Month && this.Day == other.Day;
+
+        }
+
+        //ハッシュコードを求める
+        public override int GetHashCode() {
+            return Month.GetHashCode() * 31 + Day.GetHashCode();
+
+        }
     }
 }
