@@ -8,20 +8,24 @@ using System.Threading.Tasks;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {            
-
+            //入力処理
             Console.WriteLine("生年月日を入力してください");
             Console.Write("年：");
-            int year = int.Parse(Console.ReadLine());
+            int year = int.Parse(Console.ReadLine()); //年（西暦）を入力
             Console.Write("月：");
-            int month = int.Parse(Console.ReadLine());
+            int month = int.Parse(Console.ReadLine());　//月を入力
             Console.Write("日：");
-            int day = int.Parse(Console.ReadLine());
+            int day = int.Parse(Console.ReadLine()); //日を入力
 
-            var birthday = new DateTime(year, month, day);
+            var birthday = new DateTime(year, month, day);//上記で入力したやつをDateTimeに入れてbirthdayに代入
             var culture = new CultureInfo("ja-JP");
-            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            var str = birthday.ToString("ggyy年M月d日dddd" , culture);
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar(); //日本のカレンダーに変更
+            var str = birthday.ToString("ggyy年M月d日dddd" , culture); // gg:元号, yy:元号年, M:月, d:日, dddd:曜日
             Console.WriteLine("あなたは"+ str+ "に生まれました。");
+
+            var today = DateTime.Today; //
+            TimeSpan timeSpan = today.Date - birthday.Date; //今日から誕生日までの日数を計算する            
+            Console.WriteLine("あなたは、生まれてから今日で" + timeSpan.Days + "日目です。");
         }
     }
 }
