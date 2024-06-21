@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,33 +18,10 @@ namespace Section01 {
             int day = int.Parse(Console.ReadLine());
 
             var birthday = new DateTime(year, month, day);
-            DayOfWeek dayOfWeek = birthday.DayOfWeek;
-
-            switch (dayOfWeek) {
-                case DayOfWeek.Monday:
-                    Console.WriteLine("月曜日です。");
-                    break;
-                case DayOfWeek.Tuesday:
-                    Console.WriteLine("火曜日です。");
-                    break;
-                case DayOfWeek.Wednesday:
-                    Console.WriteLine("水曜日です。");
-                    break;
-                case DayOfWeek.Thursday:
-                    Console.WriteLine("木曜日です。");
-                    break;
-                case DayOfWeek.Friday:
-                    Console.WriteLine("金曜日です。");
-                    break;
-                case DayOfWeek.Saturday:
-                    Console.WriteLine("土曜日です。");
-                    break;
-                case DayOfWeek.Sunday:
-                    Console.WriteLine("日曜日です。");
-                    break;
-            }
-
-
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var str = birthday.ToString("ggyy年M月d日dddd" , culture);
+            Console.WriteLine("あなたは"+ str+ "に生まれました。");
         }
     }
 }
@@ -65,3 +43,27 @@ namespace Section01 {
            }else {
                Console.WriteLine("閏年ではありません。");
            }*/
+
+/*switch (dayOfWeek) {
+    case DayOfWeek.Monday:
+        Console.WriteLine("月曜日です。");
+        break;
+    case DayOfWeek.Tuesday:
+        Console.WriteLine("火曜日です。");
+        break;
+    case DayOfWeek.Wednesday:
+        Console.WriteLine("水曜日です。");
+        break;
+    case DayOfWeek.Thursday:
+        Console.WriteLine("木曜日です。");
+        break;
+    case DayOfWeek.Friday:
+        Console.WriteLine("金曜日です。");
+        break;
+    case DayOfWeek.Saturday:
+        Console.WriteLine("土曜日です。");
+        break;
+    case DayOfWeek.Sunday:
+        Console.WriteLine("日曜日です。");
+        break;
+}*/
