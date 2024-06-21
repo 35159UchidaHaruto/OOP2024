@@ -23,9 +23,9 @@ namespace Section01 {
             var str = birthday.ToString("ggyy年M月d日dddd" , culture); // gg:元号, yy:元号年, M:月, d:日, dddd:曜日
             Console.WriteLine("あなたは"+ str+ "に生まれました。");
 
-            var today = DateTime.Today; //
+            var today = DateTime.Today; //今日の日付
             TimeSpan timeSpan = today.Date - birthday.Date; //今日から誕生日までの日数を計算する            
-            Console.WriteLine("あなたは、生まれてから今日で" + timeSpan.Days + "日目です。");
+            Console.WriteLine("あなたは、生まれてから今日で{0}日目です。", timeSpan.Days + 1);
         }
     }
 }
