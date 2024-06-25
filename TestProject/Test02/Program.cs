@@ -104,7 +104,7 @@ namespace Test02 {
         //　　　　出力結果【30.2才】
         private static void Exercise05(List<Person> persons) {
            var avg = persons.Average(p => p.Age);
-            Console.WriteLine($"{avg}" );
+            Console.WriteLine($"{avg}" + "才" );
 
         }
 
@@ -112,7 +112,7 @@ namespace Test02 {
         //　　　　出力結果【72.25kg】
         private static void Exercise06(List<Person> persons) {
             var person = persons.Where(p => p.Height >= 170).Average(p => p.Weight);
-            Console.WriteLine(person);
+            Console.WriteLine(person + "kg");
 
         }
 

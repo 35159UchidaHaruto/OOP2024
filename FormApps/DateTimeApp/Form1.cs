@@ -1,23 +1,43 @@
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
-
 namespace DateTimeApp {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
         }
 
-        private void tbDisp_TextChanged(object sender, EventArgs e) {
+        private void btDateCount_Click(object sender, EventArgs e) {
 
+            var today = DateTime.Today;
+
+            TimeSpan diff = today - dtpDate.Value;
+
+            //tbDisp.Text = "ZZ“ú–Ú";
+            tbDisp.Text = (diff.Days + 1) + "“ú–Ú";
         }
 
-        private void btDateCount_Click(object sender, EventArgs e) {                                  
-            
-            var today = DateTime.Today; //¡“ú‚Ì“ú•t
+        private void btDayBufore_Click(object sender, EventArgs e) {
+            // tbDisp.Text = numericUpDown1.Value.ToString();
+            var past = dtpDate.Value.AddDays(-(double)nudDay.Value);
+            tbDisp.Text = past.ToString("D");
+        }
 
-            TimeSpan timeSpan = today - dtpBirthday.Value; //¡“ú‚©‚ç’a¶“ú‚Ü‚Å‚Ì“ú”‚ğŒvZ‚·‚é
-            tbDisp.Text = timeSpan.Days + "“ú–Ú";            
+        private void BtDayafter_Click(object sender, EventArgs e) {
+            var future = dtpDate.Value.AddDays((double)nudDay.Value);
+            tbDisp.Text = future.ToString("D");
+        }
 
+        private void btAege_Click(object sender, EventArgs e) {
+            var brithday = dtpDate.Value;
+            var today = DateTime.Today;
+            int age = GetAge(brithday, today);
+            tbDisp.Text = age.ToString();
+        }
+
+        private int GetAge(DateTime brithday, DateTime targetDay) {
+            var age = targetDay.Year - brithday.Year;
+            if(targetDay< brithday.AddYears(age).AddDays(-1)) {
+                age--;
+            }
+            return age;
         }
     }
 }

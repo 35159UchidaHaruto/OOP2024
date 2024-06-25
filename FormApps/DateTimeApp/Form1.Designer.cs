@@ -24,36 +24,41 @@
         /// </summary>
         private void InitializeComponent() {
             label1 = new Label();
-            dtpBirthday = new DateTimePicker();
+            dtpDate = new DateTimePicker();
             btDateCount = new Button();
             tbDisp = new TextBox();
+            btDayBefore = new Button();
+            BtDayafter = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            btAege = new Button();
+            nudDay = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(21, 49);
             label1.Name = "label1";
-            label1.Size = new Size(110, 32);
+            label1.Size = new Size(62, 32);
             label1.TabIndex = 0;
-            label1.Text = "生年月日";
+            label1.Text = "日付";
             // 
-            // dtpBirthday
+            // dtpDate
             // 
-            dtpBirthday.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpBirthday.Location = new Point(143, 9);
-            dtpBirthday.Name = "dtpBirthday";
-            dtpBirthday.Size = new Size(232, 35);
-            dtpBirthday.TabIndex = 1;
-            dtpBirthday.Value = new DateTime(2005, 3, 2, 0, 0, 0, 0);
+            dtpDate.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dtpDate.Location = new Point(137, 44);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(198, 39);
+            dtpDate.TabIndex = 1;
             // 
             // btDateCount
             // 
-            btDateCount.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btDateCount.Location = new Point(143, 69);
+            btDateCount.Location = new Point(196, 89);
             btDateCount.Name = "btDateCount";
-            btDateCount.Size = new Size(168, 53);
+            btDateCount.Size = new Size(139, 54);
             btDateCount.TabIndex = 2;
             btDateCount.Text = "今日までの日数";
             btDateCount.UseVisualStyleBackColor = true;
@@ -61,24 +66,70 @@
             // 
             // tbDisp
             // 
-            tbDisp.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbDisp.Location = new Point(12, 170);
+            tbDisp.Font = new Font("Yu Gothic UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbDisp.Location = new Point(12, 318);
             tbDisp.Name = "tbDisp";
-            tbDisp.Size = new Size(299, 39);
+            tbDisp.Size = new Size(446, 43);
             tbDisp.TabIndex = 3;
-            tbDisp.TextChanged += tbDisp_TextChanged;
+            // 
+            // btDayBefore
+            // 
+            btDayBefore.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btDayBefore.Location = new Point(196, 161);
+            btDayBefore.Name = "btDayBefore";
+            btDayBefore.Size = new Size(109, 65);
+            btDayBefore.TabIndex = 4;
+            btDayBefore.Text = "日前";
+            btDayBefore.UseVisualStyleBackColor = true;
+            btDayBefore.Click += btDayBufore_Click;
+            // 
+            // BtDayafter
+            // 
+            BtDayafter.Font = new Font("メイリオ", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            BtDayafter.Location = new Point(196, 232);
+            BtDayafter.Name = "BtDayafter";
+            BtDayafter.Size = new Size(109, 65);
+            BtDayafter.TabIndex = 5;
+            BtDayafter.Text = "日後";
+            BtDayafter.UseVisualStyleBackColor = true;
+            BtDayafter.Click += BtDayafter_Click;
+            // 
+            // btAege
+            // 
+            btAege.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btAege.Location = new Point(347, 161);
+            btAege.Name = "btAege";
+            btAege.Size = new Size(89, 65);
+            btAege.TabIndex = 6;
+            btAege.Text = "年齢";
+            btAege.UseVisualStyleBackColor = true;
+            btAege.Click += btAege_Click;
+            // 
+            // numericUpDown1
+            // 
+            nudDay.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            nudDay.Location = new Point(21, 207);
+            nudDay.Name = "numericUpDown1";
+            nudDay.Size = new Size(148, 39);
+            nudDay.TabIndex = 7;
+            nudDay.Value = new decimal(new int[] { 66, 0, 0, 0 });
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(413, 253);
+            ClientSize = new Size(470, 388);
+            Controls.Add(nudDay);
+            Controls.Add(btAege);
+            Controls.Add(BtDayafter);
+            Controls.Add(btDayBefore);
             Controls.Add(tbDisp);
             Controls.Add(btDateCount);
-            Controls.Add(dtpBirthday);
+            Controls.Add(dtpDate);
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)nudDay).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -86,8 +137,14 @@
         #endregion
 
         private Label label1;
-        private DateTimePicker dtpBirthday;
+        private DateTimePicker dtpDate;
         private Button btDateCount;
         private TextBox tbDisp;
+        private Button btDayBefore;
+        private Button BtDayafter;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private Button btAege;
+        private NumericUpDown nudDay;
     }
 }
