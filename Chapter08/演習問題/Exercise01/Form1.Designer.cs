@@ -68,6 +68,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(229, 167);
             textBox1.TabIndex = 3;
+            textBox1.TextChanged += btEx8_2_Click;
             // 
             // button2
             // 
@@ -78,6 +79,7 @@
             button2.TabIndex = 4;
             button2.Text = "問題8.3";
             button2.UseVisualStyleBackColor = true;
+            button2.TextChanged += btEx8_3_Click;
             button2.Click += btEx8_3_Click;
             // 
             // textBox2
