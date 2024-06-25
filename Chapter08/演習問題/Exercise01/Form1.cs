@@ -16,17 +16,21 @@ namespace Exercise01 {
             tbDisp.Text += now.ToString(str);
         }
 
-        private void btEx8_2(object sender, EventArgs e) {
+        private void btEx8_2_Click(object sender, EventArgs e) {
             var today = DateTime.Today;
             DateTime nextweekday = nextWeekday(today, DayOfWeek.Tuesday);
-            tbDisp.Text = nextweekday.ToString("dddd");
+            tbDisp.Text = today + "ÇÃéüèTÇÕ"+ nextweekday.ToString("d") + nextweekday.ToString("dddd");
         }
 
         private static DateTime nextWeekday(DateTime date, DayOfWeek dayOfWeek) {
             var days = (int)dayOfWeek - (int)(date.DayOfWeek);
-            if(days <= 0) 
+            if (days <= 0)
                 days += 7;
             return date.AddDays(days);
+
+        }        
+
+        private void btEx8_3_Click(object sender, EventArgs e) {
             
         }
     }
