@@ -26,7 +26,7 @@
             label1 = new Label();
             dtpDate = new DateTimePicker();
             label2 = new Label();
-            cbAuther = new ComboBox();
+            cbAuthor = new ComboBox();
             label3 = new Label();
             label4 = new Label();
             cbCarName = new ComboBox();
@@ -50,6 +50,7 @@
             btReportOpen = new Button();
             btReportSave = new Button();
             label7 = new Label();
+            ofdPicFileOpen = new OpenFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
@@ -84,15 +85,15 @@
             label2.TabIndex = 0;
             label2.Text = "記録者";
             // 
-            // cbAuther
+            // cbAuthor
             // 
-            cbAuther.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            cbAuther.FormattingEnabled = true;
-            cbAuther.Location = new Point(129, 86);
-            cbAuther.Name = "cbAuther";
-            cbAuther.Size = new Size(344, 38);
-            cbAuther.TabIndex = 2;
-            cbAuther.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cbAuthor.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            cbAuthor.FormattingEnabled = true;
+            cbAuthor.Location = new Point(129, 86);
+            cbAuthor.Name = "cbAuthor";
+            cbAuthor.Size = new Size(344, 38);
+            cbAuthor.TabIndex = 2;
+            cbAuthor.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -241,6 +242,7 @@
             btPicDelete.TabIndex = 6;
             btPicDelete.Text = "削除";
             btPicDelete.UseVisualStyleBackColor = true;
+            btPicDelete.Click += btPicDelete_Click;
             // 
             // pbPicture
             // 
@@ -248,6 +250,7 @@
             pbPicture.Location = new Point(567, 56);
             pbPicture.Name = "pbPicture";
             pbPicture.Size = new Size(309, 246);
+            pbPicture.SizeMode = PictureBoxSizeMode.Zoom;
             pbPicture.TabIndex = 7;
             pbPicture.TabStop = false;
             // 
@@ -281,6 +284,7 @@
             btPicOpen.TabIndex = 5;
             btPicOpen.Text = "開く…";
             btPicOpen.UseVisualStyleBackColor = true;
+            btPicOpen.Click += btPicOpen_Click;
             // 
             // btDelete
             // 
@@ -296,9 +300,12 @@
             // 
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCarReport.Location = new Point(129, 472);
+            dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
+            dgvCarReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCarReport.Size = new Size(756, 194);
             dgvCarReport.TabIndex = 9;
+            dgvCarReport.Click += dgvCarReport_Click;
             // 
             // btReportOpen
             // 
@@ -330,6 +337,10 @@
             label7.TabIndex = 11;
             label7.Text = "一覧";
             // 
+            // ofdPicFileOpen
+            // 
+            ofdPicFileOpen.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -348,7 +359,7 @@
             Controls.Add(tbReport);
             Controls.Add(groupBox1);
             Controls.Add(cbCarName);
-            Controls.Add(cbAuther);
+            Controls.Add(cbAuthor);
             Controls.Add(dtpDate);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -372,7 +383,7 @@
         private Label label1;
         private DateTimePicker dtpDate;
         private Label label2;
-        private ComboBox cbAuther;
+        private ComboBox cbAuthor;
         private Label label3;
         private Label label4;
         private ComboBox cbCarName;
@@ -396,5 +407,6 @@
         private Button btReportOpen;
         private Button btReportSave;
         private Label label7;
+        private OpenFileDialog ofdPicFileOpen;
     }
 }
