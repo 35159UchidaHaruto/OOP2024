@@ -85,7 +85,7 @@ namespace Test02 {
         //問題３　奇数のみを降順に並べて表示（遅延実行とする）
         //　　　　出力結果【91 87 53 35 31 17】
         private static void Exercise03(List<int> numbers) {
-            IEnumerable<int> qeary = numbers.Where(n => n % 2 == 1).OrderByDescending(n => n % 2 ==1) ;
+            IEnumerable<int> qeary = numbers.Where(n => n % 2 == 1).OrderByDescending(n => n) ;
             foreach (var qe in qeary) {
                 Console.Write(qe + " ");
             }
@@ -122,8 +122,8 @@ namespace Test02 {
         //　　　　　　　　　片山伸介 65kg】
        　private static void Exercise07(List<Person> persons) {
             IEnumerable<Person> qeary = persons.Where(p => p.Weight <= 70);
-            foreach(var qe in qeary) {
-                Console.WriteLine(qe);
+            foreach(var person in qeary) {
+                Console.WriteLine($"{person.Name}{person.Weight}kg");
             }               
         }
 
@@ -132,8 +132,8 @@ namespace Test02 {
         //　　　　　　　　　片山伸介】
         private static void Exercise08(List<Person> persons) {
             IEnumerable<Person> qeary = persons.Where(p => p.Name.Contains("山"));
-            foreach (var qe in qeary) {
-                Console.WriteLine(qe);
+            foreach (var person in qeary) {
+                Console.WriteLine($"{person.Name}");
             }
 
 
