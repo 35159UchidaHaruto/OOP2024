@@ -48,7 +48,7 @@ namespace CarReportSystem {
             }
         }
         //指定したメーカーのラジオボタンをセット
-        private void RadioButtonMaker(CarReport.MakerGroup targetMaker) {
+        private void setRadioButtonMaker(CarReport.MakerGroup targetMaker) {
             switch (targetMaker) {
                 case CarReport.MakerGroup.トヨタ:
                     rbToyota.Checked = true;
@@ -87,21 +87,21 @@ namespace CarReportSystem {
 
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
-            RadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
+            setRadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
             cbCarName.Text = (string)dgvCarReport.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvCarReport.CurrentRow.Cells["Report"].Value;
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
         private void btDelete_Click(object sender, EventArgs e) {
-            if (dgvCarReport.Rows != null) {                                
-                listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
-            }
+            listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
         }
 
-        private void btModifyReport_Click(object sender, EventArgs e) {
-            int rowIndex = dgvCarReport.CurrentRow.Index;
+        private void btModifyReport_Click(object sender, EventArgs e) {            
+                
+                int rowIndex = dgvCarReport.CurrentRow.Index;                                                            
 
+            dgvCarReport.Refresh();//データグリッドビューの更新
         }
     }
 }
