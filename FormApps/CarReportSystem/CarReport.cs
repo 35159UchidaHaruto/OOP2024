@@ -28,8 +28,8 @@ namespace CarReportSystem {
         public string CarName { get; set; } = string.Empty;//車名
         [System.ComponentModel.DisplayName("レポート")]
         public string Report {  get; set; } = string.Empty;//レポート        
-        [System.ComponentModel.Browsable(false)]
-        public string? Picture {  get; set; }//画像
+        //[System.ComponentModel.Browsable(false)]
+        public Image? Picture {  get; set; }//画像
         
 
     }

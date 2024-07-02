@@ -12,20 +12,8 @@ namespace CarReportSystem {
             dgvCarReport.DataSource = listCarReports;
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e) {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e) {
-            //dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
-        }
-
-        private void label7_Click(object sender, EventArgs e) {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-
+            dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
         }
 
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -35,7 +23,7 @@ namespace CarReportSystem {
                 Maker = GetRadioButtonMakerGroup(),
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
-                Picture =
+                Picture = pbPicture.Image,
 
             };
             listCarReports.Add(carReport);
@@ -45,27 +33,6 @@ namespace CarReportSystem {
 
         //選択されているメーカー名を列挙型で返す
         private CarReport.MakerGroup GetRadioButtonMakerGroup() {
-        //指定したメーカーのラジオボタンをセット
-        /*private void RadioButtonMaker(CarReport.MakerGroup targetMaker) {
-                if (targetMaker) {
-                    return CarReport.MakerGroup.トヨタ;
-                } else if (rbNissan.Checked) {
-                    return CarReport.MakerGroup.日産;
-                } else if (rbHonda.Checked) {
-                    return CarReport.MakerGroup.ホンダ;
-                } else if (rbSubaru.Checked) {
-                    return CarReport.MakerGroup.スバル;
-                } else if (rbImporter.Checked) {
-                    return CarReport.MakerGroup.輸入車;
-                } else {
-                    return CarReport.MakerGroup.その他;
-                }
-            }*/
-
-            //var makers = CarReport.Maker
-            foreach (var s in listCarReports) {
-
-            }
             if (rbToyota.Checked) {
                 return CarReport.MakerGroup.トヨタ;
             } else if (rbNissan.Checked) {
@@ -78,6 +45,29 @@ namespace CarReportSystem {
                 return CarReport.MakerGroup.輸入車;
             } else {
                 return CarReport.MakerGroup.その他;
+            }
+        }
+        //指定したメーカーのラジオボタンをセット
+        private void RadioButtonMaker(CarReport.MakerGroup targetMaker) {
+            switch (targetMaker) {
+                case CarReport.MakerGroup.トヨタ:
+                    rbToyota.Checked = true;
+                    break;
+                case CarReport.MakerGroup.日産:
+                    rbNissan.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ホンダ:
+                    rbHonda.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スバル:
+                    rbSubaru.Checked = true;
+                    break;
+                case CarReport.MakerGroup.輸入車:
+                    rbImporter.Checked = true;
+                    break;
+                case CarReport.MakerGroup.その他:
+                    rbOther.Checked = true;
+                    break;
             }
         }
 
@@ -94,10 +84,10 @@ namespace CarReportSystem {
         private void dgvCarReport_Click(object sender, EventArgs e) {
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
-            
+            RadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
             cbCarName.Text = (string)dgvCarReport.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvCarReport.CurrentRow.Cells["Report"].Value;
-            //Image = (string)dgvCarReport.CurrentRow.Cells["Image"].Value;
+            pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
     }
 }
