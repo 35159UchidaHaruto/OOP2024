@@ -73,7 +73,6 @@
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(200, 33);
             dtpDate.TabIndex = 1;
-            dtpDate.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // label2
             // 
@@ -93,7 +92,6 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(344, 38);
             cbAuthor.TabIndex = 2;
-            cbAuthor.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -232,6 +230,7 @@
             btModifyReport.TabIndex = 5;
             btModifyReport.Text = "修正";
             btModifyReport.UseVisualStyleBackColor = true;
+            btModifyReport.Click += btModifyReport_Click;
             // 
             // btPicDelete
             // 
@@ -295,6 +294,7 @@
             btDelete.TabIndex = 8;
             btDelete.Text = "削除";
             btDelete.UseVisualStyleBackColor = true;
+            btDelete.Click += btDelete_Click;
             // 
             // dgvCarReport
             // 
