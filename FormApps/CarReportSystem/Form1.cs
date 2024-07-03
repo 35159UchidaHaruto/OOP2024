@@ -34,6 +34,14 @@ namespace CarReportSystem {
             listCarReports.Add(carReport);
             setCbAuthor(cbAuthor.Text);
             setCbCarName(cbCarName.Text);
+            setMessage();            
+        }
+
+        private void setMessage() {
+            cbAuthor.Text = "";
+            cbCarName.Text = "";
+            tbReport.Text = "";
+            dgvCarReport.ClearSelection();
         }
 
         //記録者の履歴をコンボボックスへ登録（重複なし）
@@ -120,19 +128,26 @@ namespace CarReportSystem {
         //データ削除ボタン
         private void btDelete_Click(object sender, EventArgs e) {
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
+            setMessage();
         }
 
         //データ修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
+            if(dgvCarReport.CurrentRow == null) {
+                tslbMessage.Text = "修正したいデータを選んでください。";
+                return;
+            }           
+                listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
+                listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
+                listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioButtonMakerGroup();
+                listCarReports[dgvCarReport.CurrentRow.Index].CarName = cbCarName.Text;
+                listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
+                listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
+                dgvCarReport.Refresh();//データグリッドビューの更新
+                setMessage();
 
-            listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
-            listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
-            listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioButtonMakerGroup();
-            listCarReports[dgvCarReport.CurrentRow.Index].CarName = cbCarName.Text;
-            listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
-            listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
-            dgvCarReport.Refresh();//データグリッドビューの更新
-        }
+                
+        }        
        
     }
 }
