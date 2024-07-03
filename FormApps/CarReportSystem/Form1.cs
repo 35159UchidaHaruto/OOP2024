@@ -15,8 +15,12 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
         }
-
+        //追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
+            if(string .IsNullOrEmpty(cbAuthor.Text)&& string.IsNullOrEmpty(cbCarName.Text)) {
+                MessageBox.Show("記録者と車名を入力してください。");
+                return;
+            }
             CarReport carReport = new CarReport() {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -26,7 +30,9 @@ namespace CarReportSystem {
                 Picture = pbPicture.Image,
                 
             };
-            listCarReports.Add(carReport);            
+            listCarReports.Add(carReport);
+            setCbAuthor(cbAuthor.Text);
+            setCbCarName(cbCarName.Text);
         }
 
         //記録者の履歴をコンボボックスへ登録（重複なし）
@@ -43,6 +49,7 @@ namespace CarReportSystem {
             }
 
         }
+
         //選択されているメーカー名を列挙型で返す
         private CarReport.MakerGroup GetRadioButtonMakerGroup() {
             if (rbToyota.Checked) {
@@ -84,19 +91,19 @@ namespace CarReportSystem {
             }
         }
 
-        //画像を開く
+        // 画像を開くボタン
         private void btPicOpen_Click(object sender, EventArgs e) {
             if (ofdPicFileOpen.ShowDialog() == DialogResult.OK)
                 pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
 
         }
 
-        //画像を削除
+        //画像を削除ボタン
         private void btPicDelete_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
         
-        //一覧追加
+        //一覧
         private void dgvCarReport_Click(object sender, EventArgs e) {
 
             if (dgvCarReport.Rows.Count == 0) return;
@@ -109,12 +116,12 @@ namespace CarReportSystem {
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
-        //削除
+        //データ削除ボタン
         private void btDelete_Click(object sender, EventArgs e) {
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
         }
 
-        //修正
+        //データ修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
 
             listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
