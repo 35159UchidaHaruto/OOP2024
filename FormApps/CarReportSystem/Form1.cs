@@ -13,12 +13,12 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
+            dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない            
         }
         //追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
-            if(string .IsNullOrEmpty(cbAuthor.Text)&& string.IsNullOrEmpty(cbCarName.Text)) {
-                MessageBox.Show("記録者と車名を入力してください。");
+            if (cbAuthor.Text == "" || cbCarName.Text == "") {
+                tslbMessage.Text = "記録者、または車名が未入力です。";
                 return;
             }
             CarReport carReport = new CarReport() {
@@ -28,7 +28,7 @@ namespace CarReportSystem {
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
-                
+
             };
             listCarReports.Add(carReport);
             setCbAuthor(cbAuthor.Text);
@@ -39,7 +39,7 @@ namespace CarReportSystem {
         private void setCbAuthor(string author) {
             if (!cbAuthor.Items.Contains(author)) {
                 cbAuthor.Items.Add(author);
-            }            
+            }
         }
 
         //車名の履歴をコンボボックスへ登録（重複なし）
@@ -102,7 +102,7 @@ namespace CarReportSystem {
         private void btPicDelete_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
-        
+
         //一覧
         private void dgvCarReport_Click(object sender, EventArgs e) {
 
@@ -132,5 +132,6 @@ namespace CarReportSystem {
             listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
             dgvCarReport.Refresh();//データグリッドビューの更新
         }
+       
     }
 }
