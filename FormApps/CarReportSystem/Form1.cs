@@ -24,13 +24,25 @@ namespace CarReportSystem {
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
-
+                
             };
-            listCarReports.Add(carReport);
+            listCarReports.Add(carReport);            
         }
 
+        //記録者の履歴をコンボボックスへ登録（重複なし）
+        private void setCbAuthor(string author) {
+            if (!cbAuthor.Items.Contains(author)) {
+                cbAuthor.Items.Add(author);
+            }            
+        }
 
+        //車名の履歴をコンボボックスへ登録（重複なし）
+        private void setCbCarName(string carName) {
+            if (!cbCarName.Items.Contains(carName)) {
+                cbCarName.Items.Add(carName);
+            }
 
+        }
         //選択されているメーカー名を列挙型で返す
         private CarReport.MakerGroup GetRadioButtonMakerGroup() {
             if (rbToyota.Checked) {
@@ -47,6 +59,7 @@ namespace CarReportSystem {
                 return CarReport.MakerGroup.その他;
             }
         }
+
         //指定したメーカーのラジオボタンをセット
         private void setRadioButtonMaker(CarReport.MakerGroup targetMaker) {
             switch (targetMaker) {
@@ -71,16 +84,19 @@ namespace CarReportSystem {
             }
         }
 
+        //画像を開く
         private void btPicOpen_Click(object sender, EventArgs e) {
             if (ofdPicFileOpen.ShowDialog() == DialogResult.OK)
                 pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
 
         }
 
+        //画像を削除
         private void btPicDelete_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
-
+        
+        //一覧追加
         private void dgvCarReport_Click(object sender, EventArgs e) {
 
             if (dgvCarReport.Rows.Count == 0) return;
@@ -93,14 +109,20 @@ namespace CarReportSystem {
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
+        //削除
         private void btDelete_Click(object sender, EventArgs e) {
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
         }
 
-        private void btModifyReport_Click(object sender, EventArgs e) {            
-                
-                int rowIndex = dgvCarReport.CurrentRow.Index;                                                            
+        //修正
+        private void btModifyReport_Click(object sender, EventArgs e) {
 
+            listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
+            listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioButtonMakerGroup();
+            listCarReports[dgvCarReport.CurrentRow.Index].CarName = cbCarName.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
             dgvCarReport.Refresh();//データグリッドビューの更新
         }
     }
