@@ -21,6 +21,7 @@ namespace CarReportSystem {
                 tslbMessage.Text = "‹L˜^ÒA‚Ü‚½‚ÍÔ–¼‚ª–¢“ü—Í‚Å‚·B";
                 return;
             }
+
             CarReport carReport = new CarReport() {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
