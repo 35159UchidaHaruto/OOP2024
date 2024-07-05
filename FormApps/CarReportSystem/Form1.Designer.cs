@@ -53,6 +53,8 @@
             ofdPicFileOpen = new OpenFileDialog();
             ssMessageArea = new StatusStrip();
             tslbMessage = new ToolStripStatusLabel();
+            ofdReportFileOpen = new OpenFileDialog();
+            sfdReportFileSave = new SaveFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
@@ -319,6 +321,7 @@
             btReportOpen.TabIndex = 10;
             btReportOpen.Text = "開く…";
             btReportOpen.UseVisualStyleBackColor = true;
+            btReportOpen.Click += btReportOpen_Click;
             // 
             // btReportSave
             // 
@@ -329,6 +332,7 @@
             btReportSave.TabIndex = 10;
             btReportSave.Text = "保存";
             btReportSave.UseVisualStyleBackColor = true;
+            btReportSave.Click += btReportSave_Click;
             // 
             // label7
             // 
@@ -357,6 +361,10 @@
             // 
             tslbMessage.Name = "tslbMessage";
             tslbMessage.Size = new Size(0, 17);
+            // 
+            // ofdReportFileOpen
+            // 
+            ofdReportFileOpen.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -431,5 +439,7 @@
         private OpenFileDialog ofdPicFileOpen;
         private StatusStrip ssMessageArea;
         private ToolStripStatusLabel tslbMessage;
+        private OpenFileDialog ofdReportFileOpen;
+        private SaveFileDialog sfdReportFileSave;
     }
 }
