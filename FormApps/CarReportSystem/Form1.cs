@@ -133,22 +133,14 @@ namespace CarReportSystem {
         private void dgvCarReport_Click(object sender, EventArgs e) {
 
             if ((dgvCarReport.Rows.Count == 0 )
-                || (!dgvCarReport.CurrentRow.Selected)) return;            
+                || (!dgvCarReport.CurrentRow.Selected)) return;                        
 
-            DataGridViewRow selectedRow = dgvCarReport.CurrentRow;
-            dtpDate.Value = (DateTime)selectedRow.Cells["Date"].Value;
-            cbAuthor.Text = (string)selectedRow.Cells["Author"].Value;
-            setRadioButtonMaker((CarReport.MakerGroup)selectedRow.Cells["Maker"].Value);
-            cbCarName.Text = (string)selectedRow.Cells["CarName"].Value;
-            tbReport.Text = (string)selectedRow.Cells["Report"].Value;
-            pbPicture.Image = (Image)selectedRow.Cells["Picture"].Value;
-
-            /*dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
+            dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
             setRadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
             cbCarName.Text = (string)dgvCarReport.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvCarReport.CurrentRow.Cells["Report"].Value;
-            pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;*/
+            pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
         //データ削除ボタン

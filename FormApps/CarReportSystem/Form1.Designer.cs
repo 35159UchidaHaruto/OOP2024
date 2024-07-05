@@ -144,7 +144,6 @@
             rbToyota.Name = "rbToyota";
             rbToyota.Size = new Size(50, 19);
             rbToyota.TabIndex = 0;
-            rbToyota.TabStop = true;
             rbToyota.Text = "トヨタ";
             rbToyota.UseVisualStyleBackColor = true;
             // 
@@ -155,7 +154,6 @@
             rbNissan.Name = "rbNissan";
             rbNissan.Size = new Size(49, 19);
             rbNissan.TabIndex = 0;
-            rbNissan.TabStop = true;
             rbNissan.Text = "日産";
             rbNissan.UseVisualStyleBackColor = true;
             // 
@@ -166,7 +164,6 @@
             rbHonda.Name = "rbHonda";
             rbHonda.Size = new Size(53, 19);
             rbHonda.TabIndex = 0;
-            rbHonda.TabStop = true;
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
             // 
@@ -177,7 +174,6 @@
             rbSubaru.Name = "rbSubaru";
             rbSubaru.Size = new Size(54, 19);
             rbSubaru.TabIndex = 0;
-            rbSubaru.TabStop = true;
             rbSubaru.Text = "スバル";
             rbSubaru.UseVisualStyleBackColor = true;
             // 
@@ -188,7 +184,6 @@
             rbImporter.Name = "rbImporter";
             rbImporter.Size = new Size(61, 19);
             rbImporter.TabIndex = 0;
-            rbImporter.TabStop = true;
             rbImporter.Text = "輸入車";
             rbImporter.UseVisualStyleBackColor = true;
             // 
@@ -209,6 +204,7 @@
             // rbOther
             // 
             rbOther.AutoSize = true;
+            rbOther.Checked = true;
             rbOther.Location = new Point(361, 22);
             rbOther.Name = "rbOther";
             rbOther.Size = new Size(56, 19);
@@ -390,6 +386,7 @@
             Controls.Add(label6);
             Controls.Add(label1);
             Name = "Form1";
+            SizeGripStyle = SizeGripStyle.Show;
             Text = "試乗レポート管理システム";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
