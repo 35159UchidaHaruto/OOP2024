@@ -95,6 +95,7 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(344, 38);
             cbAuthor.TabIndex = 2;
+            cbAuthor.TextChanged += cbAuthor_TextChanged;
             // 
             // label3
             // 
@@ -124,6 +125,7 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(344, 38);
             cbCarName.TabIndex = 2;
+            cbCarName.TextChanged += cbCarName_TextChanged;
             // 
             // label5
             // 
@@ -301,10 +303,12 @@
             // 
             // dgvCarReport
             // 
+            dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCarReport.Location = new Point(129, 472);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
+            dgvCarReport.RowHeadersVisible = false;
             dgvCarReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCarReport.Size = new Size(756, 194);
             dgvCarReport.TabIndex = 9;
@@ -356,8 +360,7 @@
             // tslbMessage
             // 
             tslbMessage.Name = "tslbMessage";
-            tslbMessage.Size = new Size(118, 17);
-            tslbMessage.Text = "toolStripStatusLabel1";
+            tslbMessage.Size = new Size(0, 17);
             // 
             // Form1
             // 
