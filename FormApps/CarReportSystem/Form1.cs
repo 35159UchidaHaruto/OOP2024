@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
@@ -14,7 +15,10 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない            
+            dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
+                                                             //交互に色を設定(データグリッドビュー)
+            dgvCarReport.RowsDefaultCellStyle.SelectionBackColor = Color.AliceBlue;
+            dgvCarReport.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.Teal;
         }
         //追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -183,6 +187,11 @@ namespace CarReportSystem {
 
         //保存ボタン
         private void btReportSave_Click(object sender, EventArgs e) {
+            ReportSaveFile();
+        }
+
+        //ファイルセーブ処理
+        private void ReportSaveFile() {
             if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
                 try {
                     //バイナリ形式でシリアル化
@@ -196,31 +205,72 @@ namespace CarReportSystem {
                 }
                 catch (Exception) {
 
-                    throw;
+                    tslbMessage.Text = "書き込みエラー";
                 }
 
 
             }
         }
 
+        //開くボタンイベント
         private void btReportOpen_Click(object sender, EventArgs e) {
-            if(ofdPicFileOpen.ShowDialog() == DialogResult.OK) {
+            ReportOpenFile();
+        }
+
+        //ファイルオープン処理
+        private void ReportOpenFile() {
+            if (ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
                 try {
                     //逆シリアル化でバイナリ形式を取り込む
 #pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
                     var bf = new BinaryFormatter();
 #pragma warning restore SYSLIB0011 // 型またはメンバーが旧型式です
-                    using (FileStream fs 
-                            = File.Open(ofdReportFileOpen.FileName,FileMode.Open, FileAccess.Read)) {
-                            listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
-                            dgvCarReport.DataSource = listCarReports;
+                    using (FileStream fs
+                            = File.Open(ofdReportFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+                        listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvCarReport.DataSource = listCarReports;
+
+
+                        foreach (var carReport in listCarReports) {
+                            setCbAuthor(carReport.Author);
+                            setCbCarName(carReport.CarName);
+                        }
+
                     }
                 }
-                catch (Exception) {
+                catch (Exception ex) {
 
-                    throw;
-                }                
+                    tslbMessage.Text = "ファイル形式が違います";
+                }
+                dgvCarReport.ClearSelection();//セレクションを外す
             }
+        }
+
+
+        //項目クリア処理
+        private void btClear_Click(object sender, EventArgs e) {
+            inputItemsAllClear();
+            dgvCarReport.ClearSelection();//セレクションを外す
+        }
+
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            ReportOpenFile();
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            ReportSaveFile();
+        }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show("終了しますか？", "確認",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes) Application.Exit();
         }
     }
 }
+           /*if (MessageBox.Show("終了してもいいですか？", "確認",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                            ) == DialogResult.Yes) {                
+                   Application.Exit();
+            }else if(DialogResult == DialogResult.No) {
+                return;
+            }*/
