@@ -267,10 +267,3 @@ namespace CarReportSystem {
         }
     }
 }
-           /*if (MessageBox.Show("終了してもいいですか？", "確認",
-                     MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                            ) == DialogResult.Yes) {                
-                   Application.Exit();
-            }else if(DialogResult == DialogResult.No) {
-                return;
-            }*/
