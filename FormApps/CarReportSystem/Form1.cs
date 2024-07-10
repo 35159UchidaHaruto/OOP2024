@@ -1,12 +1,18 @@
+using System.CodeDom;
 using System.ComponentModel;
+using System.Configuration;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
+        //設定クラスのインスタンス作成        
+        Settings settings = new Settings(); 
 
         //コンストラクタ
         public Form1() {
@@ -261,10 +267,36 @@ namespace CarReportSystem {
             ReportSaveFile();
         }
 
-        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {            
-            if(MessageBox.Show("終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)　== DialogResult.Yes) 
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (MessageBox.Show("終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 Application.Exit();
         }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            //色を設定する処理
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                //選択された色の取得
+                BackColor = cdColor.Color;
+                //色を保存する処理
+                settings.MainFormColor = cdColor.Color.ToArgb();
+                               
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化            
+            try {
+                
+                XmlSerializer serializer = new XmlSerializer(settings.GetType());
+                using (TextWriter fs = new StreamWriter("settings.xml")) {                    
+                    serializer.Serialize(fs, settings);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"設定ファイルの保存中にエラーが発生しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
     }
 }
 
