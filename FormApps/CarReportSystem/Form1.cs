@@ -12,7 +12,7 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //設定クラスのインスタンス作成        
-        Settings settings = new Settings(); 
+        Settings settings = new Settings();
 
         //コンストラクタ
         public Form1() {
@@ -22,9 +22,28 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReport.Columns["Picture"].Visible = false; //画像を表示しない
-                                                             //交互に色を設定(データグリッドビュー)
+
+            //交互に色を設定(データグリッドビュー)
             dgvCarReport.RowsDefaultCellStyle.SelectionBackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.Teal;
+
+            //設定ファイルを逆シリアライズ化して背景を設定(P307　リスト12.7を参考にする)            
+            if (File.Exists("settings.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("settings.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormColor);
+                        settings.MainFormColor = BackColor.ToArgb();
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"設定ファイルの読み込み中にエラーが発生しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else {
+                tslbMessage.Text = "色情報ファイルがありません。";
+            }
+
         }
         //追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -276,27 +295,26 @@ namespace CarReportSystem {
             //色を設定する処理
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 //選択された色の取得
-                BackColor = cdColor.Color;
+                BackColor = cdColor.Color;//   背景色設定
                 //色を保存する処理
-                settings.MainFormColor = cdColor.Color.ToArgb();
-                               
+                settings.MainFormColor = cdColor.Color.ToArgb();//背景色保存
+
             }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルのシリアル化            
             try {
-                
-                XmlSerializer serializer = new XmlSerializer(settings.GetType());
-                using (TextWriter fs = new StreamWriter("settings.xml")) {                    
-                    serializer.Serialize(fs, settings);
+                using (var writer = XmlWriter.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(typeof(Settings));
+                    serializer.Serialize(writer, serializer);
                 }
             }
             catch (Exception ex) {
                 MessageBox.Show($"設定ファイルの保存中にエラーが発生しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
     }
 }
 
