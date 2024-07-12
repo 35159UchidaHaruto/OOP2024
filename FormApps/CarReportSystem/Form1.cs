@@ -152,7 +152,7 @@ namespace CarReportSystem {
                         settings.MainFormColor = BackColor.ToArgb();
                     }
                 }
-                catch (Exception ) {
+                catch (Exception) {
                     tslbMessage.Text = "例外が発生しました。";
                 }
             } else {
@@ -298,7 +298,7 @@ namespace CarReportSystem {
 
             }
         }
-            private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
 
             //設定ファイルのシリアル化            
             try {
