@@ -142,7 +142,7 @@ namespace CarReportSystem {
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
 
-            //設定ファイルを逆シリアライズ化して背景を設定(P307　リスト12.7を参考にする)            
+            //設定ファイルを逆シリアル化して背景を設定(P307　リスト12.7を参考にする)            
             if (File.Exists("settings.xml")) {
                 try {
                     using (var reader = XmlReader.Create("settings.xml")) {
