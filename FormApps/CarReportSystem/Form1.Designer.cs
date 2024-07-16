@@ -90,12 +90,12 @@
             dtpDate.Size = new Size(198, 33);
             dtpDate.TabIndex = 1;
             // 
-            // label2
+            // lbVersion
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
             label2.Location = new Point(22, 99);
-            label2.Name = "label2";
+            label2.Name = "lbVersion";
             label2.Size = new Size(69, 25);
             label2.TabIndex = 0;
             label2.Text = "記録者";
