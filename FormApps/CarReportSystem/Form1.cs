@@ -5,15 +5,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Drawing;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
-
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
-        //設定クラスのインスタンス作成        
+        //設定クラスのインスタンス作成
         Settings settings = Settings.getInstance();
 
         //コンストラクタ
@@ -36,7 +34,6 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
             };
-
             listCarReports.Add(carReport);
 
             setCbAuthor(cbAuthor.Text);
@@ -45,7 +42,6 @@ namespace CarReportSystem {
             dgvCarReport.ClearSelection();  //セレクションを外す
             inputItemsAllClear();   //入力項目をすべてクリア
         }
-
         //入力項目をすべてクリア
         private void inputItemsAllClear() {
             dtpDate.Value = DateTime.Now;
@@ -61,7 +57,6 @@ namespace CarReportSystem {
             if (!cbAuthor.Items.Contains(author))
                 cbAuthor.Items.Add(author);
         }
-
         //車名の履歴をコンボボックスへ登録（重複なし）
         private void setCbCarName(string carName) {
             if (!cbCarName.Items.Contains(carName))
@@ -85,7 +80,6 @@ namespace CarReportSystem {
 
             return CarReport.MakerGroup.その他;
         }
-
         //指定したメーカーのラジオボタンをセット
         private void setRadioButtonMaker(CarReport.MakerGroup targetMaker) {
             switch (targetMaker) {
@@ -142,8 +136,8 @@ namespace CarReportSystem {
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
 
-            //設定ファイルを逆シリアル化して背景を設定(P307　リスト12.7を参考にする)            
             if (File.Exists("settings.xml")) {
+                //設定ファイルを逆シリアル化して背景を設定(P307 リスト12.7を参考にする)
                 try {
                     using (var reader = XmlReader.Create("settings.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
@@ -153,10 +147,10 @@ namespace CarReportSystem {
                     }
                 }
                 catch (Exception) {
-                    tslbMessage.Text = "例外が発生しました。";
+                    tslbMessage.Text = "色情報ファイルエラー";
                 }
             } else {
-                tslbMessage.Text = "色情報ファイルがありません。";
+                tslbMessage.Text = "色情報ファイルがありません";
             }
         }
 
@@ -205,7 +199,6 @@ namespace CarReportSystem {
         private void cbAuthor_TextChanged(object sender, EventArgs e) {
             tslbMessage.Text = "";
         }
-
         //車名のテキストが編集されたら
         private void cbCarName_TextChanged(object sender, EventArgs e) {
             tslbMessage.Text = "";
@@ -261,7 +254,7 @@ namespace CarReportSystem {
                         }
                     }
                 }
-                catch (Exception) {
+                catch (Exception ex) {
                     tslbMessage.Text = "ファイル形式が違います";
                 }
                 dgvCarReport.ClearSelection();  //セレクションを外す
@@ -285,31 +278,34 @@ namespace CarReportSystem {
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
 
             if (MessageBox.Show("本当に終了しますか？", "確認",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                 Application.Exit();
+            }
         }
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
-                //選択された色の取得
-                BackColor = cdColor.Color;//   背景色設定
-                //色を保存する処理
+                BackColor = cdColor.Color;  //背景色設定
                 settings.MainFormColor = cdColor.Color.ToArgb();//背景色保存
-
             }
         }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
 
-            //設定ファイルのシリアル化            
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化
             try {
                 using (var writer = XmlWriter.Create("settings.xml")) {
                     var serializer = new XmlSerializer(settings.GetType());
-                    serializer.Serialize(writer, serializer);
+                    serializer.Serialize(writer, settings);
                 }
             }
-            catch (Exception ex) {
-                MessageBox.Show($"設定ファイルの保存中にエラーが発生しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception) {
+                MessageBox.Show("設定ファイル書き込みエラー");
             }
+        }       
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();           
         }
     }
 }
