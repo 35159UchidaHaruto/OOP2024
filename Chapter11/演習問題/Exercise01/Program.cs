@@ -48,7 +48,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(string file) {
-            
+            var xdoc = XDocument.Load("sample.xml");
+            var xelements = xdoc.Root.Elements().Max(x => x.Element("teammembers"));
+            foreach(var x in xelements) {
+                var xname = x.Element("name");
+                Console.WriteLine(xname.Value);
+            }
         }
 
         private static void Exercise1_4(string file, string newfile) {           
