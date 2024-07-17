@@ -9,7 +9,7 @@ namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
             
-            var xdoc = XDocument.Load("novelists.xml");
+            XDocument xdoc = XDocument.Load("novelists.xml");
             var xelements = xdoc.Root.Descendants("title");
 
             //.OrderByDescending(x => ((DateTime)x.Element("birth")));                
