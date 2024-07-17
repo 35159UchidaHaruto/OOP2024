@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace Exercise01 {
     internal class Program {
@@ -33,7 +34,17 @@ namespace Exercise01 {
             
         }
 
-        private static void Exercise1_2(string file) {            
+        private static void Exercise1_2(string file) {
+            var xdoc = XDocument.Load("sample.xml");
+            var xelements = xdoc.Root.Elements()
+                .OrderByDescending(x => (int)x.Element("firstplayed"));
+
+            foreach(var x in xelements) {
+                var xname = x.Element("name");
+                var xkanji = xname.Attribute("kanji");
+                var xyear = x.Element("firstplayed");
+                Console.WriteLine("{0},{1}", xkanji.Value,xyear.Value);
+            }
         }
 
         private static void Exercise1_3(string file) {

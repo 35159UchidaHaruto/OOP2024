@@ -14,7 +14,7 @@ namespace Section01 {
 
             //.OrderByDescending(x => ((DateTime)x.Element("birth")));                
 
-            /*foreach (var xnovelist in xelements) {
+            foreach (var xnovelist in xelements) {
                 var xname = xnovelist.Element("name");//要素の取得
                 var xworks = xnovelist.Element("masterpieces")
                     .Elements("title")
@@ -25,7 +25,7 @@ namespace Section01 {
                 var birth = (DateTime)xnovelist.Element("birth");//要素の取得
 
                 Console.WriteLine("{0}- {1}", xname.Value, string.Join(",", xworks));
-            }*/
+            }
         }
     }
 }
