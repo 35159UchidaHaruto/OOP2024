@@ -55,22 +55,39 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(string file, string newfile) {
-            var element = new XElement("ballsport",
-                new XElement("name","サッカー",new XAttribute("kanji","蹴球")),
-                new XElement("teammembers","11"),
-                new XElement("firstplayed", "1863"));
             
+            List<XElement> xElements = new List<XElement>();
+                        
             var xdoc = XDocument.Load(file);
-            xdoc.Root.Add(element);
+            string name, kanji, member, origin;
+            int nextFlag;
 
-
-            // これ以降は確認用のコード 
-            foreach (var xsports in xdoc.Root.Elements()) {
-                var xname = xsports.Element("name");
-                var xfirstplayed = xsports.Element("firstplayed");
-                Console.WriteLine("{0} {1}", xname.Value, xfirstplayed.Value);
+            while (true) { 
+                Console.Write("名称:");
+                name = Console.ReadLine();
+                Console.Write("漢字:");
+                kanji = Console.ReadLine();
+                Console.Write("人数:");
+                member = Console.ReadLine();
+                Console.Write("起源:");
+                origin = Console.ReadLine();
+                
+                //１件分の要素作成
+                var element = new XElement("ballsport",
+                    new XElement("name", name, new XAttribute("kanji", kanji)),
+                    new XElement("teammembers", member),
+                    new XElement("firstplayed", origin));
+                xElements.Add(element); //リストへ要素を追加
+                
+                Console.WriteLine();//改行                
+                Console.Write("追加 (1),保存 (2) :");
+                Console.Write(">");
+                nextFlag = int.Parse(Console.ReadLine());
+                if (nextFlag == 2) break;
+                Console.WriteLine();//改行                
             }
-            xdoc.Save(newfile);           
+            xdoc.Root.Add(xElements);
+            xdoc.Save(newfile); //保存                       
         }
     }
 }
