@@ -49,14 +49,28 @@ namespace Exercise01 {
 
         private static void Exercise1_3(string file) {
             var xdoc = XDocument.Load("sample.xml");
-            var xelements = xdoc.Root.Elements().Max(x => x.Element("teammembers"));
-            foreach(var x in xelements) {
-                var xname = x.Element("name");
-                Console.WriteLine(xname.Value);
-            }
+            var xelements = xdoc.Root.Elements()
+                .OrderByDescending(x => x.Element("teammembers").Value).First();            
+            Console.WriteLine("{0}",xelements.Element("name").Value);
         }
 
-        private static void Exercise1_4(string file, string newfile) {           
+        private static void Exercise1_4(string file, string newfile) {
+            var element = new XElement("ballsport",
+                new XElement("name","サッカー",new XAttribute("kanji","蹴球")),
+                new XElement("teammembers","11"),
+                new XElement("firstplayed", "1863"));
+            
+            var xdoc = XDocument.Load(file);
+            xdoc.Root.Add(element);
+
+
+            // これ以降は確認用のコード 
+            foreach (var xsports in xdoc.Root.Elements()) {
+                var xname = xsports.Element("name");
+                var xfirstplayed = xsports.Element("firstplayed");
+                Console.WriteLine("{0} {1}", xname.Value, xfirstplayed.Value);
+            }
+            xdoc.Save(newfile);           
         }
     }
 }
