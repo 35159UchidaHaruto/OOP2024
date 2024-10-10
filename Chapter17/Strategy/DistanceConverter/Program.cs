@@ -21,6 +21,7 @@ namespace DistanceConverter {
 
 
 
+
         static ConverterBase GetConverter(string msg) {
             ConverterBase converter= null;
             do {
