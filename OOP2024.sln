@@ -161,6 +161,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Strategy", "Strategy", "{AA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceConverter", "Chapter17\Strategy\DistanceConverter\DistanceConverter.csproj", "{F8B49866-5BE7-45C8-881E-741AF0A5B59D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextNumberSizeChange", "Chapter17\TemplateMethod\TextNumberSizeChange\TextNumberSizeChange.csproj", "{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{01131F7C-7C26-4145-AD72-40E6B723BB24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "WPF\SampleApplication\SampleApplication.csproj", "{4E50E1A4-625D-49B1-B700-B7A3BEA4B489}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -363,6 +369,14 @@ Global
 		{F8B49866-5BE7-45C8-881E-741AF0A5B59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8B49866-5BE7-45C8-881E-741AF0A5B59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8B49866-5BE7-45C8-881E-741AF0A5B59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E50E1A4-625D-49B1-B700-B7A3BEA4B489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E50E1A4-625D-49B1-B700-B7A3BEA4B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E50E1A4-625D-49B1-B700-B7A3BEA4B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E50E1A4-625D-49B1-B700-B7A3BEA4B489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -431,6 +445,8 @@ Global
 		{2ECCB61A-7BCA-4644-8A3E-8053F3DC7243} = {DCC19754-2634-4F89-BEB4-5D0718B77643}
 		{AA820982-8CAD-4D62-BEA1-B205DFC3F894} = {3F876DF8-3701-4DDB-B2FD-225E56C08107}
 		{F8B49866-5BE7-45C8-881E-741AF0A5B59D} = {AA820982-8CAD-4D62-BEA1-B205DFC3F894}
+		{39578A5F-55F2-4D38-8BF5-B4EBEE5AF591} = {D5EB3DF0-018A-4A45-B07F-E8711150C997}
+		{4E50E1A4-625D-49B1-B700-B7A3BEA4B489} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89C8FAB2-77A3-4149-9460-FF19A053A8BB}
