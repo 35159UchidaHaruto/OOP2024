@@ -61,9 +61,11 @@ namespace CollorChecker {
         }
 
         private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var mycolor = (Mycolor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
+            currentColor = (Mycolor)((ComboBox)sender).SelectedItem;            
+            var color = currentColor.Color;
+            var name = currentColor.Name;
+            
+            
         }
         
     }
