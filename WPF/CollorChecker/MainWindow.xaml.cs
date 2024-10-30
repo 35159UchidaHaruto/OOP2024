@@ -21,34 +21,45 @@ namespace CollorChecker {
     /// </summary>
     public partial class MainWindow : Window {
         Mycolor currentColor; //現在設定している色情報
-        
+
         public MainWindow() {
             InitializeComponent();
             //αチャンネルの初期値を設定(起動後すぐにストックボタンが押された場合の対応)
-            currentColor.Color = Color.FromArgb(255,0,0,0);
+            currentColor.Color = Color.FromArgb(255, 0, 0, 0);
             var colors = typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static);
             DataContext = GetColorList();
         }
 
         //スライドを動かすと呼ばれるイベントハンドラ
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            
-            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {                      
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);           
             colorArea.Background = new SolidColorBrush(currentColor.Color);            
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
+            currentColor.Name = GetColorList().Where(c => c.Color == currentColor.Color).Select( c=> c.Name).FirstOrDefault();
+            //既に登録されている場合は登録しない
             if (!stockList.Items.Contains(currentColor)) {
-                stockList.Items.Insert(0, currentColor);
-            }                  
+                stockList.Items.Insert(0, currentColor);            
+            } else {
+                MessageBox.Show("既に登録済みです。");
+            }            
+            colorSelectComboBox.SelectedIndex = -1;
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            colorArea.Background = new SolidColorBrush(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);
-            rSlider.Value = ((Mycolor)stockList.Items[stockList.SelectedIndex]).Color.R;
-            gSlider.Value = ((Mycolor)stockList.Items[stockList.SelectedIndex]).Color.G;
-            bSlider.Value = ((Mycolor)stockList.Items[stockList.SelectedIndex]).Color.B;
-            
+            if(stockList.SelectedIndex != -1) {
+                colorArea.Background = new SolidColorBrush(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);
+                setSliderValue(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);
+               
+            }           
+        }
+
+        //色スライダーの値を設定する
+        private void setSliderValue(Color color) {
+            rSlider.Value = color.R;
+            gSlider.Value = color.G;
+            bSlider.Value = color.B;            
         }
 
         /// <summary>
@@ -61,12 +72,26 @@ namespace CollorChecker {
         }
 
         private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            currentColor = (Mycolor)((ComboBox)sender).SelectedItem;            
-            var color = currentColor.Color;
-            var name = currentColor.Name;
-            
-            
+            if (colorSelectComboBox.SelectedIndex != -1) {
+                var tempCurrentColor= currentColor = (Mycolor)((ComboBox)sender).SelectedItem;
+                
+                //各スライダーの値を設定する
+                setSliderValue(currentColor.Color);
+                currentColor.Name = tempCurrentColor.Name; //Nameプロパティの文字列を設定
+               
+                
+            }
+
         }
-        
+
+        private void Button_Click(object sender, RoutedEventArgs e) {            
+            if (stockList.SelectedIndex != -1) {
+                var i = stockList.SelectedIndex;
+                stockList.Items.RemoveAt(i);
+                currentColor.Color = Color.FromRgb(0, 0, 0);
+                colorArea.Background = new SolidColorBrush(currentColor.Color);                
+                setSliderValue((Color)currentColor.Color);
+            }
+        }
     }
 }

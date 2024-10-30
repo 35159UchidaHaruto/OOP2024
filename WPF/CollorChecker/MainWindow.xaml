@@ -30,7 +30,7 @@
             <Slider x:Name="rSlider" Maximum="255" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130"  Margin="0,28,0,0" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="rValue" Grid.Column="2" FontSize="20" RenderTransformOrigin="-0.069,0.537"
                      Text= "{Binding ElementName= rSlider, Path = Value, UpdateSourceTrigger = PropertyChanged, StringFormat = 0}"/>
-            
+
 
             <TextBlock Text="G" Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Slider x:Name="gSlider" Maximum="255" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130" ValueChanged="Slider_ValueChanged"/>
@@ -56,7 +56,8 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            
+            <Button x:Name="DeleteButton" Content="削除" FontSize="15" HorizontalAlignment="Center" Margin="0,21,0,0" Grid.Row="3" VerticalAlignment="Top" Click="Button_Click"/>
+
         </Grid>
 
         <Grid Grid.Column="2">
