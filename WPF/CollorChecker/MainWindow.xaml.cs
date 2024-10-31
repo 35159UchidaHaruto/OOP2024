@@ -21,19 +21,36 @@ namespace CollorChecker {
     /// </summary>
     public partial class MainWindow : Window {
         Mycolor currentColor; //現在設定している色情報
+        Mycolor[] colorsTable; //色のデータ
 
         public MainWindow() {
             InitializeComponent();
-            //αチャンネルの初期値を設定(起動後すぐにストックボタンが押された場合の対応)
+            //αチャンネルの初期値を設定(起動後すぐにストックボタンが押された場合の対応)            
             currentColor.Color = Color.FromArgb(255, 0, 0, 0);
             var colors = typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static);
-            DataContext = GetColorList();
+            DataContext = colorsTable = GetColorList();
+            
         }
 
         //スライドを動かすと呼ばれるイベントハンドラ
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {                      
-            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);           
-            colorArea.Background = new SolidColorBrush(currentColor.Color);            
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
+
+            int i;
+            for (i = 0; i < colorsTable.Length; i++) {
+                if (colorsTable[i].Color.Equals(currentColor.Color)) {
+                    currentColor.Name = colorsTable[i].Name;
+                    break;
+                }
+            }
+            colorSelectComboBox.SelectedIndex = i;
+
+            if (i == colorsTable.Length) {
+                colorSelectComboBox.SelectedIndex = i;
+            } else {
+                colorSelectComboBox.SelectedIndex = 0;
+            }
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
@@ -50,8 +67,7 @@ namespace CollorChecker {
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if(stockList.SelectedIndex != -1) {
                 colorArea.Background = new SolidColorBrush(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);
-                setSliderValue(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);
-               
+                setSliderValue(((Mycolor)stockList.Items[stockList.SelectedIndex]).Color);               
             }           
         }
 
