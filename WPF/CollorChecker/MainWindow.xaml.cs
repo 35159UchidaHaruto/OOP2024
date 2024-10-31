@@ -44,13 +44,7 @@ namespace CollorChecker {
                     break;
                 }
             }
-            colorSelectComboBox.SelectedIndex = i;
-
-            if (i == colorsTable.Length) {
-                colorSelectComboBox.SelectedIndex = i;
-            } else {
-                colorSelectComboBox.SelectedIndex = 0;
-            }
+            colorSelectComboBox.SelectedIndex = i;            
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
