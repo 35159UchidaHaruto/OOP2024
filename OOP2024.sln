@@ -173,6 +173,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSlider", "WPF\SampleS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollorChecker", "WPF\CollorChecker\CollorChecker.csproj", "{312C78D9-920B-43FC-B2CB-3B0CB71B6AFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\SampleUnitConverter\SampleUnitConverter.csproj", "{59248ECC-77F2-4E8C-9097-AA202E7CAB8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWeightUnitConverter", "WPF\SampleWeightUnitConverter\SampleWeightUnitConverter.csproj", "{866E16A1-425A-4C5C-AF3E-13A745368710}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -395,6 +399,14 @@ Global
 		{312C78D9-920B-43FC-B2CB-3B0CB71B6AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{312C78D9-920B-43FC-B2CB-3B0CB71B6AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312C78D9-920B-43FC-B2CB-3B0CB71B6AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59248ECC-77F2-4E8C-9097-AA202E7CAB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59248ECC-77F2-4E8C-9097-AA202E7CAB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59248ECC-77F2-4E8C-9097-AA202E7CAB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59248ECC-77F2-4E8C-9097-AA202E7CAB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{866E16A1-425A-4C5C-AF3E-13A745368710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{866E16A1-425A-4C5C-AF3E-13A745368710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{866E16A1-425A-4C5C-AF3E-13A745368710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{866E16A1-425A-4C5C-AF3E-13A745368710}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -468,6 +480,8 @@ Global
 		{A4A1E4D4-CAD2-40B3-BF09-E99D41C1AFF5} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
 		{5C21BA75-A1FF-4597-B20E-48965ACA7329} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
 		{312C78D9-920B-43FC-B2CB-3B0CB71B6AFA} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
+		{59248ECC-77F2-4E8C-9097-AA202E7CAB8B} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
+		{866E16A1-425A-4C5C-AF3E-13A745368710} = {01131F7C-7C26-4145-AD72-40E6B723BB24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89C8FAB2-77A3-4149-9460-FF19A053A8BB}
