@@ -43,11 +43,11 @@ namespace SampleWeightUnitConverter {
             CurrentGramUnit = GramUnit.Units.First();
             CurrentPoundUnit = PoundUnit.Units.First();
 
-            PoundUnitToGram = new DelegateCommand(
-                () => GramValue = CurrentGramUnit.FromGramUnit(CurrentPoundUnit,PoundValue));
+            PoundUnitToGram = new DelegateCommand(() => 
+                                  GramValue = CurrentGramUnit.FromGramUnit(CurrentPoundUnit,PoundValue));
 
-            PoundToGramUnit = new DelegateCommand(
-                () => PoundValue = CurrentPoundUnit.FromPoundUnit(CurrentGramUnit, GramValue));
+            PoundToGramUnit = new DelegateCommand(() => 
+                                  PoundValue = CurrentPoundUnit.FromPoundUnit(CurrentGramUnit, GramValue));
         }
     }
 }
