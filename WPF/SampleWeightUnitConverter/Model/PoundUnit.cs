@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SampleWeightUnitConverter {
-    //オンス単位を表すクラス
+    //ポンド単位を表すクラス
     public class PoundUnit : WeightUnit {
         private static List<PoundUnit> units = new List<PoundUnit> {
            new PoundUnit{Name = "oz" ,Coefficient = 1,},
@@ -21,7 +21,7 @@ namespace SampleWeightUnitConverter {
         /// <returns></returns>
 
         public double FromPoundUnit(GramUnit unit, double value) {
-            return (value * unit.Coefficient) / 0.45359237 / this.Coefficient;
+            return (value * unit.Coefficient) / 28.35/ this.Coefficient;
         }
     }
 }

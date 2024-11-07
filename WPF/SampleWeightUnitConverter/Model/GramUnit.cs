@@ -8,8 +8,8 @@ namespace SampleWeightUnitConverter {
     //グラム単位を表すクラス
     public class GramUnit : WeightUnit {
         private static List<GramUnit> units = new List<GramUnit> {
-           new GramUnit{Name = "g" ,Coefficient = 0.001,},
-           new GramUnit{Name = "kg" ,Coefficient = 1,}          
+           new GramUnit{Name = "g" ,Coefficient = 1,},
+           new GramUnit{Name = "kg" ,Coefficient = 1000,}          
         };
         public static ICollection<GramUnit> Units { get { return units; } }
 
@@ -21,7 +21,7 @@ namespace SampleWeightUnitConverter {
         /// <returns></returns>
 
         public double FromGramUnit(PoundUnit unit, double value) {
-            return (value * unit.Coefficient) * 0.045/ this.Coefficient;
+            return (value * unit.Coefficient) * 28.35 / this.Coefficient;
         }
     }
 }
