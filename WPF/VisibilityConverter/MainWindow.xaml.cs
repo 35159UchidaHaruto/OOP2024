@@ -22,19 +22,20 @@ namespace VisibilityConverter {
             InitializeComponent();
         }
 
-        private void Red_Click(object sender, RoutedEventArgs e) {
-            
-                Resources["RedBrushKey"] = new SolidColorBrush(Colors.Red);
-            
-        }
-
-        private void Blue_Click(object sender, RoutedEventArgs e) {            
-                Resources["BlueBrushKey"] = new SolidColorBrush(Colors.Blue);            
-        }
-
-        private void Green_Click(object sender, RoutedEventArgs e) {            
-                Resources["GreenBrushKey"] = new SolidColorBrush(Colors.Green);            
-        }
+        private void RadioButton_Click(object sender, RoutedEventArgs e) {
+            RadioButton selectedRadioButton = (RadioButton)sender;
+            switch (selectedRadioButton.Content) {
+                case "赤":
+                    Resources["RedBrushKey"] = new SolidColorBrush(Colors.Red);
+                    break;
+                case "青":
+                    Resources["BlueBrushKey"] = new SolidColorBrush(Colors.Blue);
+                    break;
+                case "緑":
+                    Resources["GreenBrushKey"] = new SolidColorBrush(Colors.Green);
+                    break;
+            }
+        }        
 
         //private void Button_Click(object sender, RoutedEventArgs e) {
         //    Resources["ButtonBrushKey"] = new SolidColorBrush(Colors.Gray);
