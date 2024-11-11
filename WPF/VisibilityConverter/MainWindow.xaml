@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:VisibilityConverter"
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="300">
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="RedBrushKey" Color="White"/>
+        <SolidColorBrush x:Key="BlueBrushKey" Color="White"/>
+        <SolidColorBrush x:Key="GreenBrushKey" Color="White"/>
+    </Window.Resources>
     <StackPanel>
         <StackPanel.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            
         </StackPanel.Resources>
 
         <CheckBox x:Name="CheckBox" Content="設定大項目"/>
@@ -16,9 +23,15 @@
                                  ElementName=CheckBox,
                 Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="20,0,0,0">
-            <RadioButton Content="設定小項目 1"/>
-            <RadioButton Content="設定小項目 2"/>
-            <RadioButton Content="設定小項目 3"/>
+            <RadioButton x:Name="Red" Content="赤" Click="Red_Click"/>
+            <RadioButton x:Name="Blue" Content="青" Click="Blue_Click"/>
+            <RadioButton x:Name="Green" Content= "緑" Click="Green_Click"/>                                                                  
         </StackPanel>
+
+        <Button Margin="10" Content="ボタン1" Background= "{DynamicResource RedBrushKey}"/>
+        <Button Margin="10" Content="ボタン2" Background="{DynamicResource BlueBrushKey}"/>
+        <Button Margin="10" Content="ボタン3" Background="{DynamicResource GreenBrushKey}">
+        </Button>
+
     </StackPanel>
 </Window>
