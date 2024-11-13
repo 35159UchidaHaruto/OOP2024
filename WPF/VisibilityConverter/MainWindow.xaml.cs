@@ -35,7 +35,11 @@ namespace VisibilityConverter {
                     Resources["GreenBrushKey"] = new SolidColorBrush(Colors.Green);
                     break;
             }
-        }        
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+        }
 
         //private void Button_Click(object sender, RoutedEventArgs e) {
         //    Resources["ButtonBrushKey"] = new SolidColorBrush(Colors.Gray);

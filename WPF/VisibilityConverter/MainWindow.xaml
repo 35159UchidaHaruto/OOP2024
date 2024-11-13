@@ -7,22 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="300">
     <Window.Resources>
+        <DataTemplate DataType="{x:Type local:ColorViewModel}">
+            <StackPanel Orientation="Horizontal">
 
+                <Rectangle Width="12" Height ="12">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Color}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Margin = "2" Text="{Binding Name}"/>
+            </StackPanel>
+            
+            
+        </DataTemplate>
+        
         <!--<SolidColorBrush x:Key="RedBrushKey" Color="White"/>
         <SolidColorBrush x:Key="BlueBrushKey" Color="White"/>
         <SolidColorBrush x:Key="GreenBrushKey" Color="White"/>-->
-        
-        <Style TargetType="Button">
-            <Setter Property ="Background" Value="Tan"/>
-            <Setter Property ="Foreground" Value="Red"/>
-        </Style>
 
-        <Style x:Key="WhiteBackgroundStyle" TargetType="Button">
-            <Setter Property ="Background" Value="Black"/>
-            <Setter Property ="Foreground" Value="Violet"/>
+        <Style x:Key="ElipseButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill ="{TemplateBinding Background}"/>
+                            <ContentPresenter Margin= "{TemplateBinding Padding}"
+                                                  RecognizesAccessKey="True" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-        
     </Window.Resources>
+    
     <StackPanel>
         <StackPanel.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -39,17 +59,10 @@
             <RadioButton Content= "緑" Click="RadioButton_Click"/>                                                                  
         </StackPanel>
 
-        <Button Margin="10" Content="ボタン1" Style= "{StaticResource WhiteBackgroundStyle}"/>
-        <Button Margin="10" Content="ボタン2">
-            <Button.Style>
-                <Style TargetType ="Button" BasedOn =
-                       "{StaticResource WhiteBackgroundStyle}">
-                    <Setter Property="FontSize" Value="18"/>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Margin="10" Content="ボタン3">
-        </Button>
+        <Button  Style= "{StaticResource ElipseButton}" Content="ボタン1" Background="Gray"  Click="Button_Click"/>
+        <Button Style ="{StaticResource ElipseButton}" Padding="10"  Content="ボタン2" Background="LightBlue"/>
+
+        <ComboBox ItemsSource ="{x:Static local:ColorViewModel.ColorList}"/>
 
     </StackPanel>
 </Window>
