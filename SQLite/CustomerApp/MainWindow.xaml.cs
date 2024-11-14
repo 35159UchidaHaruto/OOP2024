@@ -23,6 +23,7 @@ namespace CustomerApp {
         List<Customer> _customers;
         public MainWindow() {
             InitializeComponent();
+            ReadDatabase();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
@@ -35,16 +36,19 @@ namespace CustomerApp {
 
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                connection.Insert(customer);
+                connection.Insert(customer);                
             }
+            ReadDatabase();//ListView表示
         }
 
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {            
+        private void ReadButton_Click(object sender, RoutedEventArgs e) {
+            
+        }
 
-
+        private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                _customers = connection.Table<Customer>().ToList();                              
+                _customers = connection.Table<Customer>().ToList();
                 CustomerListView.ItemsSource = _customers;
 
             }
@@ -53,6 +57,23 @@ namespace CustomerApp {
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
             var fiterList = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = fiterList;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+            var item = CustomerListView.SelectedItem as Customer;
+            if (item == null) {
+                MessageBox.Show("削除する行を選択してください");
+                return;
+
+            }
+
+            using(var connection =new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Delete(item);
+
+                ReadDatabase();//ListView更新
+            }
+
         }
     }
 }
