@@ -20,6 +20,7 @@ namespace CustomerApp {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        List<Customer> _customers;
         public MainWindow() {
             InitializeComponent();
         }
@@ -43,10 +44,15 @@ namespace CustomerApp {
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                var custmers = connection.Table<Customer>().ToList();                              
-                CustomerListView.ItemsSource = custmers;
+                _customers = connection.Table<Customer>().ToList();                              
+                CustomerListView.ItemsSource = _customers;
 
             }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
+            var fiterList = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
+            CustomerListView.ItemsSource = fiterList;
         }
     }
 }
