@@ -39,11 +39,7 @@ namespace CustomerApp {
                 connection.Insert(customer);                
             }
             ReadDatabase();//ListView表示
-        }
-
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {
-            
-        }
+        }       
 
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -75,5 +71,37 @@ namespace CustomerApp {
             }
 
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) {
+            
+            var item = CustomerListView.SelectedItem as Customer;
+            if(item != null)
+            // ユーザーが入力した新しい情報を反映
+            item.Name = NameTextBox.Text;
+            item.Phone = PhoneTextBox.Text;
+            item.Address = AddressTextBox.Text;
+            //SQLiteデータベースで更新を行う
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Update(item);  // 顧客情報を更新
+
+            // ListViewを再読み込みして更新されたデータを表示
+                ReadDatabase();
+            }
+
+        }
+
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            // ListViewで選択されたCustomerを取得
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if (selectedCustomer != null) {
+
+                NameTextBox.Text = selectedCustomer.Name;
+                PhoneTextBox.Text = selectedCustomer.Phone;
+                AddressTextBox.Text = selectedCustomer.Address;
+            }
+
+        }
+        
     }
 }
