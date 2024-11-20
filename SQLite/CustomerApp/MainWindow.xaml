@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="515" Width="300">
-    <Grid>
+        Title="MainWindow" Height="715" Width="400">    
+        <Grid>
         <StackPanel Margin="10">
             <Grid Margin="2">
                 <Grid.RowDefinitions>
+        
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -17,6 +19,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="名前" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="NameTextBox"  Grid.Row="0" Grid.Column="1" Margin="2"/>
@@ -24,11 +27,17 @@
                 <TextBox x:Name="PhoneTextBox"  Grid.Row="1" Grid.Column="1" Margin="2"/>
                 <TextBlock Text="住所" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="AddressTextBox"  Grid.Row="2" Grid.Column="1" Margin="2"/>
+                <TextBlock Text="画像" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                <Button x:Name="PicSaveButton" Grid.Row="3" Grid.Column="2" Content="保存"  VerticalAlignment="Center" Margin="2" Click="PicSaveButton_Click"/>
+                <Button x:Name="PicDeleteButton" Grid.Row="3" Grid.Column="2" Content="削除"  VerticalAlignment="Bottom" Margin="2" Click="PicDeleteButton_Click"/>
+                <Image x:Name="CustomerImage" Grid.Row="3" Grid.Column="1" Height="100" Width="250" Margin="2"/>
             </Grid>
-            
+
             <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2"/>
             <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2"/>
             <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2"/>
+
+
             <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged"/>
             <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="300" SelectionChanged="CustomerListView_SelectionChanged">
                 <ListView.ItemTemplate>
@@ -38,6 +47,7 @@
                             <TextBlock Text="{Binding Name}" FontSize="20"/>
                             <TextBlock Text="{Binding Phone}" Foreground ="Blue"/>
                             <TextBlock Text="{Binding Address}" Foreground="Green"/>
+                            <Image Source="{Binding ImagePath}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -1,8 +1,12 @@
 ﻿using CustomerApp.Objects;
+using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,13 +28,17 @@ namespace CustomerApp {
         public MainWindow() {
             InitializeComponent();
             ReadDatabase();
+            
+
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
-                Address = AddressTextBox.Text
+                Address = AddressTextBox.Text,
+                ImagePath = CustomerImage.Source != null ? (CustomerImage.Source as BitmapImage)?.UriSource.AbsolutePath : null  //パスを保存
             };
             
 
@@ -99,9 +107,27 @@ namespace CustomerApp {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
+                if(!string.IsNullOrEmpty(selectedCustomer.ImagePath)){
+                    CustomerImage.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
+                }
             }
 
         }
-        
-    }
+
+        //画像の保存
+        private void PicSaveButton_Click(object sender, RoutedEventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "画像ファイル(*.jpg;*.jpeg;*.png;)|*.jpg;*.jpeg;*.png";
+
+            if (openFileDialog.ShowDialog() == true) {
+                string filePath = openFileDialog.FileName;
+                    // 画像を表示する
+                    CustomerImage.Source = new BitmapImage(new Uri(filePath));                
+            }
+        }
+
+        private void PicDeleteButton_Click(object sender, RoutedEventArgs e) {
+            CustomerImage.Source = null;
+        }
+    }    
 }
