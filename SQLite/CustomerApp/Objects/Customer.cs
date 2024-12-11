@@ -28,11 +28,11 @@ namespace CustomerApp.Objects {
         /// </summary>
         /// <returns></returns>
 
-        public string ImagePath { get; set; }
+        public byte[] Image { get; set; }
 
 
         public override string ToString() {
-            return $" {Id}  {Name}  {Phone} {Address} {ImagePath}";
+            return $" {Id}  {Name}  {Phone} {Address}";
         }
     }
 }
